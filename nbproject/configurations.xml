@@ -13,6 +13,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Algorithms" projectFiles="true">
+        <itemPath>algorithms/Algorithm.cpp</itemPath>
+        <itemPath>algorithms/Algorithm.h</itemPath>
         <itemPath>algorithms/coveredsetpartition.cpp</itemPath>
         <itemPath>algorithms/coveredsetpartition.h</itemPath>
       </logicalFolder>
@@ -24,6 +26,14 @@
       </logicalFolder>
       <logicalFolder name="f3" displayName="Support" projectFiles="true">
         <itemPath>support/Mutex.h</itemPath>
+        <itemPath>support/Queue.cpp</itemPath>
+        <itemPath>support/Queue.h</itemPath>
+        <itemPath>support/Thread.cpp</itemPath>
+        <itemPath>support/Thread.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="Synthesizers" projectFiles="true">
+        <itemPath>synthesizers/Synthesizer.cpp</itemPath>
+        <itemPath>synthesizers/Synthesizer.h</itemPath>
       </logicalFolder>
       <itemPath>common.h</itemPath>
       <itemPath>function.cpp</itemPath>
@@ -34,6 +44,12 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="New C++ Simple Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/newsimpletest.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -58,6 +74,7 @@
             <pElem>algorithms</pElem>
             <pElem>.</pElem>
             <pElem>support</pElem>
+            <pElem>synthesizers</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -67,6 +84,21 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>

@@ -37,15 +37,14 @@ void RandomConductor::synthesize()
   long bestCost=numeric_limits<int>::max();
 
   CoveredSetPartition *pAlgo[N_BATCH];
-  
+ 
   for (int j=0; j<N_RUNS; j++) {
     cout << "Run: " << j << "\n";
+
     for (int i=0; i<N_BATCH; i++) { 
       pAlgo[i] = new CoveredSetPartition(m_function);
       pAlgo[i]->synthesize();
     }
-
-//    WaitForQueue();
 
     for (int i=0; i<N_BATCH; i++) { 
       long qCost; // = m_pAlgo[i]->m_QuantumCost;
@@ -55,6 +54,7 @@ void RandomConductor::synthesize()
       }
       delete pAlgo[i];
     }
+		WaitForQueue();
   }
  // PrintResult(0);
 }

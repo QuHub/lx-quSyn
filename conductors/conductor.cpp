@@ -9,16 +9,28 @@
 #include <unistd.h>
 Conductor::Conductor() {
   m_nThreads = sysconf( _SC_NPROCESSORS_ONLN );
-  m_hMutex = new Mutex[m_nThreads]; 
+  m_Synthesizers = new Synthesizer[m_nThreads];
+
+  for(int i=0; i<m_nThreads; i++)
+    m_Synthesizers[i].Start();
 }
 
 Conductor::Conductor(const Conductor& orig) {
 }
 
 Conductor::~Conductor() {
-//  for(int i=0; i<m_nThreads; i++)
 
+  delete []m_Synthesizers;
+}
 
-  delete []m_hMutex;
+void Conductor::WaitForQueue() {
+  Lock();
+  bool fDone = false;
+  while(!fDone) {
+    sleep(1);
+    for(int i=0; i<m_nThreads; i++)	
+      m_Synthesizers->Lock();
+  }
+  Release();
 }
 
