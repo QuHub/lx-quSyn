@@ -9,6 +9,7 @@
 
 #ifndef MUTEX_H
 #define	MUTEX_H
+#define NO_WAIT 1
 
 class Mutex {
 public:
@@ -23,8 +24,12 @@ public:
 		pthread_mutex_destroy(&m_lock);
 	};
 
-	void Lock() {
-		pthread_mutex_lock(&m_lock);
+	int Lock(int flag=0) {
+		if(flag == NO_WAIT)
+      return pthread_mutex_trylock(&m_lock);
+    else
+			pthread_mutex_lock(&m_lock);
+    return 0;
 	}
 
 	void Release() {

@@ -15,6 +15,7 @@
       <logicalFolder name="f1" displayName="Algorithms" projectFiles="true">
         <itemPath>algorithms/Algorithm.cpp</itemPath>
         <itemPath>algorithms/Algorithm.h</itemPath>
+        <itemPath>algorithms/Hasse.h</itemPath>
         <itemPath>algorithms/coveredsetpartition.cpp</itemPath>
         <itemPath>algorithms/coveredsetpartition.h</itemPath>
       </logicalFolder>

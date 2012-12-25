@@ -17,7 +17,6 @@ class Thread
    protected:
       int Run();
       static void * EntryPoint(void*);
-      virtual void Setup();
       virtual void Execute(void*);
       void * Arg() const {return Arg_;}
       void Arg(void* a){Arg_ = a;}

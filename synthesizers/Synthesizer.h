@@ -12,14 +12,13 @@
 #ifndef SYNTHESIZER_H
 #define	SYNTHESIZER_H
 
-class Synthesizer : Thread {
+class Synthesizer : public Thread {
 public:
   Synthesizer();
   Synthesizer(const Synthesizer& orig);
   virtual ~Synthesizer();
-	void Start();
 	void Execute(void*);
-	inline void Lock() {m_Mutex.Lock();}
+	inline int Lock(int flag=0) {return m_Mutex.Lock(flag);}
 	inline void Release() {m_Mutex.Release();}
 private:
 	Mutex m_Mutex;

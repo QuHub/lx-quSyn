@@ -19,7 +19,6 @@ int Thread::Start(void * arg)
 
 int Thread::Run()
 {
-   Setup();
    Execute( NULL);
 }
 
@@ -28,11 +27,6 @@ void * Thread::EntryPoint(void * pthis)
 {
    Thread * pt = (Thread*)pthis;
    pt->Run();
-}
-
-void Thread::Setup()
-{
-	throw "Must implement in subclass";
 }
 
 void Thread::Execute(void* arg)

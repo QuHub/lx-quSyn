@@ -12,7 +12,7 @@ Conductor::Conductor() {
   m_Synthesizers = new Synthesizer[m_nThreads];
 
   for(int i=0; i<m_nThreads; i++)
-    m_Synthesizers[i].Start();
+    m_Synthesizers[i].Start(NULL);
 }
 
 Conductor::Conductor(const Conductor& orig) {
@@ -25,12 +25,15 @@ Conductor::~Conductor() {
 
 void Conductor::WaitForQueue() {
   Lock();
-  bool fDone = false;
-  while(!fDone) {
-    sleep(1);
-    for(int i=0; i<m_nThreads; i++)	
-      m_Synthesizers->Lock();
-  }
+	sleep(1);
+	// If you can lock all of them, then they are finished
+	for(int i=0; i<m_nThreads; i++)	
+		m_Synthesizers[i].Lock();
+
+	// Now release them for future processing
+	for(int i=0; i<m_nThreads; i++)	
+		m_Synthesizers[i].Release();
+
   Release();
 }
 
