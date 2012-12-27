@@ -8,12 +8,7 @@ using namespace std;
 class Hasse 
 {
 public:
-	static int m_bits;
-	static int m_terms;
-	static int m_bands;
-	static vector<unsigned long> *m_pbands;
-
-	static void initialize(int bits)
+	void initialize(int bits)
 	{
 		m_bits = bits;
 		m_terms = pow(2, bits);
@@ -27,7 +22,7 @@ public:
 	}
 
 
-	static int get(unsigned long *p, int bias)
+  int get(unsigned long *p, int bias)
 	{
 		int n=0;
 		for (int i=0; i<m_bands; i++) {
@@ -40,15 +35,20 @@ public:
 		return n;
 	}
 
-	static void release()
+	void release()
 	{
 		delete []m_pbands;
 	}
+
+  int bits() {return m_bits;}
+  int terms() {return m_terms;}
+  int bands() {return m_bands;}
+  vector<unsigned long>*band() {return m_pbands;}
+
+private:
+	int m_bits;
+	int m_terms;
+	int m_bands;
+	vector<unsigned long> *m_pbands;
 };
 
-#ifdef DEFINE_STATICS
-	int Hasse::m_bits;
-	int Hasse::m_terms;
-	int Hasse::m_bands;
-	vector<unsigned long> *Hasse::m_pbands;
-#endif

@@ -28,7 +28,7 @@ CoveredSetPartition::CoveredSetPartition()
 	unsigned long *buf = new unsigned long[m_max_terms];
 	unsigned long *p= buf;
 	for (int i=0; i<m_sets; i++) {
-		p += Hasse::get(p, i<<(m_function->m_nBits - CoveredSetPartition::ParitionSize));											
+		p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::ParitionSize));											
 	}
   copy_terms_in_function(buf);
   delete buf;
@@ -59,7 +59,7 @@ void CoveredSetPartition::initialize(Function *pfunction, int partition_size)
 	m_parameters[CoveredSetPartition::ParitionSize] = partition_size;
 	m_sets = pow(2, m_parameters[CoveredSetPartition::ParitionSize]);
   m_max_terms = pow(2, pfunction->m_nBits);
-  Hasse::initialize(pfunction->m_nBits);
+  m_hasse.initialize(pfunction->m_nBits);
 }
 
 CoveredSetPartition::CoveredSetPartition(const CoveredSetPartition& other)

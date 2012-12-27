@@ -53,6 +53,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
 
 # C Compiler Flags
@@ -148,6 +149,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/FunctionRunner
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/HasseRunner.o ${TESTDIR}/tests/HasseTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
+
 
 ${TESTDIR}/tests/FunctionRunner.o: tests/FunctionRunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -159,6 +164,18 @@ ${TESTDIR}/tests/FunctionTest.o: tests/FunctionTest.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTest.o tests/FunctionTest.cpp
+
+
+${TESTDIR}/tests/HasseRunner.o: tests/HasseRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/HasseRunner.o tests/HasseRunner.cpp
+
+
+${TESTDIR}/tests/HasseTest.o: tests/HasseTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/HasseTest.o tests/HasseTest.cpp
 
 
 ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp 
@@ -321,6 +338,7 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	else  \
 	    ./${TEST} || true; \

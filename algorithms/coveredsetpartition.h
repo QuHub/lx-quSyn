@@ -43,6 +43,7 @@ private:
 	static int m_max_terms;
   static Function *m_function;
 	static map<int,int> m_parameters;
+  static Hasse m_hasse;
 };
 
 #ifdef DEFINE_STATICS
@@ -50,5 +51,6 @@ private:
 	int CoveredSetPartition::m_max_terms;
 	map<int,int> CoveredSetPartition::m_parameters;
   Function *CoveredSetPartition::m_function;
+  Hasse CoveredSetPartition::m_hasse;
 #endif
 #endif // COVEREDSETPARTITION_H
