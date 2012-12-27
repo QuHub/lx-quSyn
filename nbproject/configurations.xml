@@ -55,6 +55,14 @@
         <itemPath>tests/FunctionTest.cpp</itemPath>
         <itemPath>tests/FunctionTest.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="Hasse Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/HasseRunner.cpp</itemPath>
+        <itemPath>tests/HasseTest.cpp</itemPath>
+        <itemPath>tests/HasseTest.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -79,6 +87,7 @@
           </incDir>
         </cTool>
         <ccTool>
+          <standard>8</standard>
           <incDir>
             <pElem>conductors</pElem>
             <pElem>algorithms</pElem>
@@ -129,16 +138,19 @@
         <cTool>
           <incDir>
             <pElem>.</pElem>
+            <pElem>.</pElem>
           </incDir>
         </cTool>
         <ccTool>
           <incDir>
+            <pElem>.</pElem>
             <pElem>.</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f2</output>
           <linkerLibItems>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
             <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>

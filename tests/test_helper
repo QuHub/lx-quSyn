@@ -1,0 +1,3 @@
+#define assert_equal CPPUNIT_ASSERT_EQUAL
+#define assert       CPPUNIT_ASSERT
+
