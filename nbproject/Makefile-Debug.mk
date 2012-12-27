@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/synthesizers/Synthesizer.o \
+	${OBJECTDIR}/common.o \
 	${OBJECTDIR}/function.o \
 	${OBJECTDIR}/conductors/randomconductor.o \
 	${OBJECTDIR}/main.o \
@@ -44,14 +45,16 @@ OBJECTFILES= \
 	${OBJECTDIR}/conductors/conductor.o \
 	${OBJECTDIR}/support/Queue.o \
 	${OBJECTDIR}/support/Thread.o \
-	${OBJECTDIR}/algorithms/coveredsetpartition.o
+	${OBJECTDIR}/algorithms/coveredsetpartition.o \
+	${OBJECTDIR}/support/Helper.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f1
+	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f2
 
 # C Compiler Flags
 CFLAGS=
@@ -67,80 +70,112 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs yaml-cpp` -lboost_filesystem  
+LDLIBSOPTIONS=`pkg-config --libs yaml-cpp` -lboost_filesystem -lboost_program_options -lcppunit   
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${TESTDIR}/TestFiles/f2
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn ${OBJECTFILES} ${LDLIBSOPTIONS} 
+${TESTDIR}/TestFiles/f2: ${OBJECTFILES}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/synthesizers/Synthesizer.o: synthesizers/Synthesizer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/synthesizers
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp
+
+${OBJECTDIR}/common.o: common.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/common.o common.cpp
 
 ${OBJECTDIR}/function.o: function.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/function.o function.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/function.o function.cpp
 
 ${OBJECTDIR}/conductors/randomconductor.o: conductors/randomconductor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/conductors
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/randomconductor.o conductors/randomconductor.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/randomconductor.o conductors/randomconductor.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/option.o: option.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/option.o option.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/option.o option.cpp
 
 ${OBJECTDIR}/algorithms/Algorithm.o: algorithms/Algorithm.cpp 
 	${MKDIR} -p ${OBJECTDIR}/algorithms
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/Algorithm.o algorithms/Algorithm.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/Algorithm.o algorithms/Algorithm.cpp
 
 ${OBJECTDIR}/conductors/conductor.o: conductors/conductor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/conductors
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/conductor.o conductors/conductor.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/conductor.o conductors/conductor.cpp
 
 ${OBJECTDIR}/support/Queue.o: support/Queue.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue.o support/Queue.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue.o support/Queue.cpp
 
 ${OBJECTDIR}/support/Thread.o: support/Thread.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Thread.o support/Thread.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Thread.o support/Thread.cpp
 
 ${OBJECTDIR}/algorithms/coveredsetpartition.o: algorithms/coveredsetpartition.cpp 
 	${MKDIR} -p ${OBJECTDIR}/algorithms
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/coveredsetpartition.o algorithms/coveredsetpartition.cpp
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/coveredsetpartition.o algorithms/coveredsetpartition.cpp
+
+${OBJECTDIR}/support/Helper.o: support/Helper.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Helper.o support/Helper.cpp
 
 # Subprojects
 .build-subprojects:
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/newsimpletest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/CoveredSetPartitionRunner.o ${TESTDIR}/tests/CoveredSetPartitionTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} 
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcppunit -lcppunit 
+
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/FunctionTest.o ${TESTDIR}/tests/FunctionTestRunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcppunit 
 
 
-${TESTDIR}/tests/newsimpletest.o: tests/newsimpletest.cpp 
+${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
-	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/newsimpletest.o tests/newsimpletest.cpp
+	$(COMPILE.cc) -g -I. -I. -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionRunner.o tests/CoveredSetPartitionRunner.cpp
+
+
+${TESTDIR}/tests/CoveredSetPartitionTest.o: tests/CoveredSetPartitionTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -I. -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionTest.o tests/CoveredSetPartitionTest.cpp
+
+
+${TESTDIR}/tests/FunctionTest.o: tests/FunctionTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTest.o tests/FunctionTest.cpp
+
+
+${TESTDIR}/tests/FunctionTestRunner.o: tests/FunctionTestRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTestRunner.o tests/FunctionTestRunner.cpp
 
 
 ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp 
@@ -151,9 +186,22 @@ ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthe
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o synthesizers/Synthesizer.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o synthesizers/Synthesizer.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/synthesizers/Synthesizer.o ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o;\
+	fi
+
+${OBJECTDIR}/common_nomain.o: ${OBJECTDIR}/common.o common.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/common.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/common_nomain.o common.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/common.o ${OBJECTDIR}/common_nomain.o;\
 	fi
 
 ${OBJECTDIR}/function_nomain.o: ${OBJECTDIR}/function.o function.cpp 
@@ -164,7 +212,7 @@ ${OBJECTDIR}/function_nomain.o: ${OBJECTDIR}/function.o function.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/function_nomain.o function.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/function_nomain.o function.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/function.o ${OBJECTDIR}/function_nomain.o;\
 	fi
@@ -177,7 +225,7 @@ ${OBJECTDIR}/conductors/randomconductor_nomain.o: ${OBJECTDIR}/conductors/random
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/randomconductor_nomain.o conductors/randomconductor.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/randomconductor_nomain.o conductors/randomconductor.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/conductors/randomconductor.o ${OBJECTDIR}/conductors/randomconductor_nomain.o;\
 	fi
@@ -190,7 +238,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/main_nomain.o main.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/main_nomain.o main.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
 	fi
@@ -203,7 +251,7 @@ ${OBJECTDIR}/option_nomain.o: ${OBJECTDIR}/option.o option.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/option_nomain.o option.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/option_nomain.o option.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/option.o ${OBJECTDIR}/option_nomain.o;\
 	fi
@@ -216,7 +264,7 @@ ${OBJECTDIR}/algorithms/Algorithm_nomain.o: ${OBJECTDIR}/algorithms/Algorithm.o 
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/Algorithm_nomain.o algorithms/Algorithm.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/Algorithm_nomain.o algorithms/Algorithm.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/algorithms/Algorithm.o ${OBJECTDIR}/algorithms/Algorithm_nomain.o;\
 	fi
@@ -229,7 +277,7 @@ ${OBJECTDIR}/conductors/conductor_nomain.o: ${OBJECTDIR}/conductors/conductor.o 
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/conductor_nomain.o conductors/conductor.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/conductor_nomain.o conductors/conductor.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/conductors/conductor.o ${OBJECTDIR}/conductors/conductor_nomain.o;\
 	fi
@@ -242,7 +290,7 @@ ${OBJECTDIR}/support/Queue_nomain.o: ${OBJECTDIR}/support/Queue.o support/Queue.
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue_nomain.o support/Queue.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue_nomain.o support/Queue.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/support/Queue.o ${OBJECTDIR}/support/Queue_nomain.o;\
 	fi
@@ -255,7 +303,7 @@ ${OBJECTDIR}/support/Thread_nomain.o: ${OBJECTDIR}/support/Thread.o support/Thre
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Thread_nomain.o support/Thread.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Thread_nomain.o support/Thread.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/support/Thread.o ${OBJECTDIR}/support/Thread_nomain.o;\
 	fi
@@ -268,9 +316,22 @@ ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o: ${OBJECTDIR}/algorithms/co
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o algorithms/coveredsetpartition.cpp;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o algorithms/coveredsetpartition.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/algorithms/coveredsetpartition.o ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o;\
+	fi
+
+${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Helper.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/support/Helper.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Helper_nomain.o support/Helper.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/support/Helper.o ${OBJECTDIR}/support/Helper_nomain.o;\
 	fi
 
 # Run Test Targets
@@ -278,6 +339,7 @@ ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o: ${OBJECTDIR}/algorithms/co
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f2 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi
@@ -285,7 +347,7 @@ ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o: ${OBJECTDIR}/algorithms/co
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
+	${RM} ${TESTDIR}/TestFiles/f2
 
 # Subprojects
 .clean-subprojects:

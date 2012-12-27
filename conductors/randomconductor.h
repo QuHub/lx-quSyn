@@ -16,6 +16,7 @@
 
 
 #include "../function.h"
+#include "coveredsetpartition.h"
 #include "conductor.h"
 
 #ifndef RANDOMCONDUCTOR_H

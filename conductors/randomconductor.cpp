@@ -42,7 +42,7 @@ void RandomConductor::synthesize()
     cout << "Run: " << j << "\n";
 
     for (int i=0; i<N_BATCH; i++) { 
-      pAlgo[i] = new CoveredSetPartition(m_function);
+      pAlgo[i] = new CoveredSetPartition();
       pAlgo[i]->synthesize();
     }
 

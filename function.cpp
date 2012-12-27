@@ -28,36 +28,8 @@ using namespace boost;
 
 Function::Function()
 {
-  bf::path p(".");
-  bf::path pa = bf::current_path();
-  
-//  YAML::Node config = YAML::LoadFile(Option::m_fileName);
-  YAML::Node config = YAML::LoadFile("3_2gtev1.xqs");
-  cout << Option::m_fileName << "\n";
-  YAML::Node temp = config["signature"];
-  m_functionName = temp["function"].as<string>();
-   m_fileName = Option::m_fileName;
-   m_nBits = config["inputs"]["variables"].as<int>();
-   m_nRadix = config["inputs"]["radix"].as<int>();
-   string specification = config["specification"].as<string>();
-   vector<string> strs;
-   boost::split(strs, specification, boost::is_any_of("\n"));
-
-   m_pIn = new int[strs.size()];
-   m_pOut = new int[strs.size()]; 
- 
-   m_nTerms =0;
-   for(int i=0; i<strs.size(); i++) {
-     string value = strs[i];
-     if(value == "") continue;
-     
-     vector<string> in_out;
-     boost::split(in_out, value, boost::is_any_of(" "));
-     m_pIn[m_nTerms] = atoi(in_out[0].c_str());
-     m_pOut[m_nTerms] = atoi(in_out[1].c_str());
-     m_nTerms++;
-   }
 }
+
 
 Function::Function(const Function& other)
 {
@@ -82,4 +54,36 @@ Function::~Function()
   cout << "destroying\n";
   delete m_pIn;
   delete m_pOut;
+}
+
+void Function::load_file(string pfilename)
+{
+  bf::path p(".");
+  bf::path pa = bf::current_path();
+  
+//  YAML::Node config = YAML::LoadFile(Option::m_fileName);
+  YAML::Node config = YAML::LoadFile(pfilename);
+  YAML::Node temp = config["signature"];
+  m_functionName = temp["function"].as<string>();
+   m_fileName = pfilename;
+   m_nBits = config["inputs"]["variables"].as<int>();
+   m_nRadix = config["inputs"]["radix"].as<int>();
+   string specification = config["specification"].as<string>();
+   vector<string> strs;
+   boost::split(strs, specification, boost::is_any_of("\n"));
+
+   m_pIn = new int[strs.size()];
+   m_pOut = new int[strs.size()]; 
+ 
+   m_nTerms =0;
+   for(int i=0; i<strs.size(); i++) {
+     string value = strs[i];
+     if(value == "") continue;
+     
+     vector<string> in_out;
+     boost::split(in_out, value, boost::is_any_of(" "));
+     m_pIn[m_nTerms] = atoi(in_out[0].c_str());
+     m_pOut[m_nTerms] = atoi(in_out[1].c_str());
+     m_nTerms++;
+   }
 }

@@ -4,56 +4,51 @@
 #include <vector>
 using namespace std;
 
-namespace QuLogic {
-  class CHasse 
-  {
-  public:
-    static bool m_fInitialized;
-    static int m_nBits;
-    static int m_nTerms;
-    static int m_nBands;
-    static vector<unsigned long> *m_pBands;
 
-    static void Initialize(int nBits)
-    {
-      if(m_fInitialized) return;
-      m_nBits = nBits;
-      m_nTerms = (int)Math::Pow(2, nBits);
-      m_nBands = nBits + 1;                 // For binary, nBands = nBits + 1
-      m_pBands = new vector<unsigned long>[m_nBands];   // Delete only once at the end of the or on TotalReset();
+class Hasse 
+{
+public:
+	static int m_bits;
+	static int m_terms;
+	static int m_bands;
+	static vector<unsigned long> *m_pbands;
 
-      // Allocate space for each bands
-      for (int i=0; i<m_nTerms; i++)
-        m_pBands[CGlobals::Ones(i)].push_back(i);
+	static void initialize(int bits)
+	{
+		m_bits = bits;
+		m_terms = pow(2, bits);
+		m_bands = bits + 1;                 
+		m_pbands = new vector<unsigned long>[m_bands];   // Delete only once at the end of the or on TotalReset();
 
-      m_fInitialized = true;
-    }
+		// Allocate space for each bands
+		for (int i=0; i<m_terms; i++) {
+			m_pbands[Helper::number_of_ones(i)].push_back(i);
+		}
+	}
 
-  public:
-    CHasse(int nBits)
-    {
-      Initialize(nBits);
 
-      for (int i=0; i<m_nBands; i++) {
-        random_shuffle(m_pBands[i].begin(), m_pBands[i].end());
-      }
-    }
+	static int get(unsigned long *p, int bias)
+	{
+		int n=0;
+		for (int i=0; i<m_bands; i++) {
+			random_shuffle(m_pbands[i].begin(), m_pbands[i].end());
+			for (int j=0; j<m_pbands[i].size(); j++) 
+				*p++ = m_pbands[i][j] + bias;
 
-    int GetSequence(PULONGLONG p, int offset)
-    {
-      int n=0;
-      for (int i=0; i<m_nBands; i++) {
-        for (int j=0; j<m_pBands[i].size(); j++) {
-          *p++ = m_pBands[i][j] + offset;
-          n++;
-        }
-      }
-      return n;
-    }
+			n+=m_pbands[i].size();
+		}
+		return n;
+	}
 
-    ~CHasse()
-    {
-    }
-  };
+	static void release()
+	{
+		delete []m_pbands;
+	}
+};
 
-}
+#ifdef DEFINE_STATICS
+	int Hasse::m_bits;
+	int Hasse::m_terms;
+	int Hasse::m_bands;
+	vector<unsigned long> *Hasse::m_pbands;
+#endif

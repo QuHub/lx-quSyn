@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/synthesizers/Synthesizer.o \
+	${OBJECTDIR}/common.o \
 	${OBJECTDIR}/function.o \
 	${OBJECTDIR}/conductors/randomconductor.o \
 	${OBJECTDIR}/main.o \
@@ -44,13 +45,15 @@ OBJECTFILES= \
 	${OBJECTDIR}/conductors/conductor.o \
 	${OBJECTDIR}/support/Queue.o \
 	${OBJECTDIR}/support/Thread.o \
-	${OBJECTDIR}/algorithms/coveredsetpartition.o
+	${OBJECTDIR}/algorithms/coveredsetpartition.o \
+	${OBJECTDIR}/support/Helper.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
 
 # C Compiler Flags
@@ -81,6 +84,11 @@ ${OBJECTDIR}/synthesizers/Synthesizer.o: synthesizers/Synthesizer.cpp
 	${MKDIR} -p ${OBJECTDIR}/synthesizers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp
+
+${OBJECTDIR}/common.o: common.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/common.o common.cpp
 
 ${OBJECTDIR}/function.o: function.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -127,20 +135,47 @@ ${OBJECTDIR}/algorithms/coveredsetpartition.o: algorithms/coveredsetpartition.cp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/coveredsetpartition.o algorithms/coveredsetpartition.cpp
 
+${OBJECTDIR}/support/Helper.o: support/Helper.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Helper.o support/Helper.cpp
+
 # Subprojects
 .build-subprojects:
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/newsimpletest.o ${OBJECTFILES:%.o=%_nomain.o}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/CoveredSetPartitionRunner.o ${TESTDIR}/tests/CoveredSetPartitionTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/FunctionTest.o ${TESTDIR}/tests/FunctionTestRunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
 
 
-${TESTDIR}/tests/newsimpletest.o: tests/newsimpletest.cpp 
+${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/newsimpletest.o tests/newsimpletest.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionRunner.o tests/CoveredSetPartitionRunner.cpp
+
+
+${TESTDIR}/tests/CoveredSetPartitionTest.o: tests/CoveredSetPartitionTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionTest.o tests/CoveredSetPartitionTest.cpp
+
+
+${TESTDIR}/tests/FunctionTest.o: tests/FunctionTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTest.o tests/FunctionTest.cpp
+
+
+${TESTDIR}/tests/FunctionTestRunner.o: tests/FunctionTestRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTestRunner.o tests/FunctionTestRunner.cpp
 
 
 ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp 
@@ -154,6 +189,19 @@ ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthe
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o synthesizers/Synthesizer.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/synthesizers/Synthesizer.o ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o;\
+	fi
+
+${OBJECTDIR}/common_nomain.o: ${OBJECTDIR}/common.o common.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/common.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/common_nomain.o common.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/common.o ${OBJECTDIR}/common_nomain.o;\
 	fi
 
 ${OBJECTDIR}/function_nomain.o: ${OBJECTDIR}/function.o function.cpp 
@@ -273,10 +321,24 @@ ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o: ${OBJECTDIR}/algorithms/co
 	    ${CP} ${OBJECTDIR}/algorithms/coveredsetpartition.o ${OBJECTDIR}/algorithms/coveredsetpartition_nomain.o;\
 	fi
 
+${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Helper.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/support/Helper.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Helper_nomain.o support/Helper.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/support/Helper.o ${OBJECTDIR}/support/Helper_nomain.o;\
+	fi
+
 # Run Test Targets
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	else  \
 	    ./${TEST} || true; \

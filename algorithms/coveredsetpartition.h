@@ -15,21 +15,40 @@
 */
 
 #include "../function.h"
+#include "Algorithm.h"
 
 #ifndef COVEREDSETPARTITION_H
 #define COVEREDSETPARTITION_H
 
-class CoveredSetPartition
+class CoveredSetPartition : public Algorithm
 {
-  Function m_function;
-
 public:
-CoveredSetPartition();
-CoveredSetPartition(Function &function);
-CoveredSetPartition(const CoveredSetPartition& other);
-void synthesize();
-virtual ~CoveredSetPartition();
-virtual CoveredSetPartition& operator=(const CoveredSetPartition& other);
+	enum {
+		ParitionSize	
+	};
+public:
+	CoveredSetPartition();
+	CoveredSetPartition(const CoveredSetPartition& other);
+	void synthesize();
+	virtual ~CoveredSetPartition();
+	virtual CoveredSetPartition& operator=(const CoveredSetPartition& other);
+	static void initialize(Function *pfunction, int number_of_partitions);
+	int& operator[] (int key) {
+		return m_parameters[key];
+	}
+	static void add_cli_options();
+private:
+  void copy_terms_in_function(unsigned long *p);
+	static int m_sets;
+	static int m_max_terms;
+  static Function *m_function;
+	static map<int,int> m_parameters;
 };
 
+#ifdef DEFINE_STATICS
+	int CoveredSetPartition::m_sets;
+	int CoveredSetPartition::m_max_terms;
+	map<int,int> CoveredSetPartition::m_parameters;
+  Function *CoveredSetPartition::m_function;
+#endif
 #endif // COVEREDSETPARTITION_H

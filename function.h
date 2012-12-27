@@ -31,9 +31,11 @@ public:
   int *m_pOut;
   
 Function();
+void load_file(string pfilename);
 Function(const Function& other);
 virtual ~Function();
 virtual Function& operator=(const Function& other);
+int bits() {return m_nBits;}
 };
 
 #endif // FUNCTION_H

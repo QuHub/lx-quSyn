@@ -8,6 +8,8 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>3_2gtev1.xqs</itemPath>
+      <itemPath>hwb9.xqs</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -26,6 +28,8 @@
         <itemPath>conductors/randomconductor.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Support" projectFiles="true">
+        <itemPath>support/Helper.cpp</itemPath>
+        <itemPath>support/Helper.h</itemPath>
         <itemPath>support/Mutex.h</itemPath>
         <itemPath>support/Queue.cpp</itemPath>
         <itemPath>support/Queue.h</itemPath>
@@ -36,6 +40,7 @@
         <itemPath>synthesizers/Synthesizer.cpp</itemPath>
         <itemPath>synthesizers/Synthesizer.h</itemPath>
       </logicalFolder>
+      <itemPath>common.cpp</itemPath>
       <itemPath>common.h</itemPath>
       <itemPath>function.cpp</itemPath>
       <itemPath>function.h</itemPath>
@@ -46,10 +51,20 @@
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
       <logicalFolder name="f1"
-                     displayName="New C++ Simple Test"
+                     displayName="CoveredSetPartitionTest"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/newsimpletest.cpp</itemPath>
+        <itemPath>tests/CoveredSetPartitionRunner.cpp</itemPath>
+        <itemPath>tests/CoveredSetPartitionTest.cpp</itemPath>
+        <itemPath>tests/CoveredSetPartitionTest.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="FunctionTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/FunctionTest.cpp</itemPath>
+        <itemPath>tests/FunctionTest.h</itemPath>
+        <itemPath>tests/FunctionTestRunner.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -69,6 +84,11 @@
         <compilerSet>default</compilerSet>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <incDir>
             <pElem>conductors</pElem>
@@ -76,16 +96,45 @@
             <pElem>.</pElem>
             <pElem>support</pElem>
             <pElem>synthesizers</pElem>
+            <pElem>.</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs yaml-cpp`</linkerOptionItem>
             <linkerLibLibItem>boost_filesystem</linkerLibLibItem>
+            <linkerLibLibItem>boost_program_options</linkerLibLibItem>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
       <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
         <cTool>
           <incDir>
             <pElem>.</pElem>
@@ -97,7 +146,10 @@
           </incDir>
         </ccTool>
         <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+          </linkerLibItems>
         </linkerTool>
       </folder>
     </conf>

@@ -13,7 +13,9 @@ public:
   Algorithm();
   Algorithm(const Algorithm& orig);
   virtual ~Algorithm();
-private:
+protected:
+	unsigned long *m_pin;
+	unsigned long *m_pout;
 
 };
 
