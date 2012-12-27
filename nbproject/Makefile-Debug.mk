@@ -53,8 +53,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f1 \
-	${TESTDIR}/TestFiles/f2
+	${TESTDIR}/TestFiles/f1
 
 # C Compiler Flags
 CFLAGS=
@@ -74,11 +73,11 @@ LDLIBSOPTIONS=`pkg-config --libs yaml-cpp` -lboost_filesystem -lboost_program_op
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${TESTDIR}/TestFiles/f2
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
 
-${TESTDIR}/TestFiles/f2: ${OBJECTFILES}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 ${OBJECTFILES} ${LDLIBSOPTIONS} 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${OBJECTFILES}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/synthesizers/Synthesizer.o: synthesizers/Synthesizer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/synthesizers
@@ -145,37 +144,21 @@ ${OBJECTDIR}/support/Helper.o: support/Helper.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/CoveredSetPartitionRunner.o ${TESTDIR}/tests/CoveredSetPartitionTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/FunctionRunner.o ${TESTDIR}/tests/FunctionTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcppunit -lcppunit 
-
-${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/FunctionTest.o ${TESTDIR}/tests/FunctionTestRunner.o ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcppunit 
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcppunit -lcppunit -lcppunit 
 
 
-${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
+${TESTDIR}/tests/FunctionRunner.o: tests/FunctionRunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
-	$(COMPILE.cc) -g -I. -I. -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionRunner.o tests/CoveredSetPartitionRunner.cpp
-
-
-${TESTDIR}/tests/CoveredSetPartitionTest.o: tests/CoveredSetPartitionTest.cpp 
-	${MKDIR} -p ${TESTDIR}/tests
-	${RM} $@.d
-	$(COMPILE.cc) -g -I. -I. -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionTest.o tests/CoveredSetPartitionTest.cpp
+	$(COMPILE.cc) -g -I. -I. -I. -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionRunner.o tests/FunctionRunner.cpp
 
 
 ${TESTDIR}/tests/FunctionTest.o: tests/FunctionTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
-	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTest.o tests/FunctionTest.cpp
-
-
-${TESTDIR}/tests/FunctionTestRunner.o: tests/FunctionTestRunner.cpp 
-	${MKDIR} -p ${TESTDIR}/tests
-	${RM} $@.d
-	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTestRunner.o tests/FunctionTestRunner.cpp
+	$(COMPILE.cc) -g -I. -I. -I. -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp`    -MMD -MP -MF $@.d -o ${TESTDIR}/tests/FunctionTest.o tests/FunctionTest.cpp
 
 
 ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp 
@@ -339,7 +322,6 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f1 || true; \
-	    ${TESTDIR}/TestFiles/f2 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi
@@ -347,7 +329,7 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${TESTDIR}/TestFiles/f2
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
 
 # Subprojects
 .clean-subprojects:

@@ -2,7 +2,7 @@
  * File:   FunctionTest.h
  * Author: mmh
  *
- * Created on Dec 26, 2012, 8:20:11 AM
+ * Created on Dec 27, 2012, 9:56:37 AM
  */
 
 #ifndef FUNCTIONTEST_H
@@ -13,8 +13,7 @@
 class FunctionTest : public CPPUNIT_NS::TestFixture {
   CPPUNIT_TEST_SUITE(FunctionTest);
 
-  CPPUNIT_TEST(testWillLoadFile);
-  CPPUNIT_TEST(testFailedMethod);
+  CPPUNIT_TEST(testMethod);
 
   CPPUNIT_TEST_SUITE_END();
 
@@ -25,8 +24,7 @@ public:
   void tearDown();
 
 private:
-  void testWillLoadFile();
-  void testFailedMethod();
+  void testMethod();
 };
 
 #endif	/* FUNCTIONTEST_H */

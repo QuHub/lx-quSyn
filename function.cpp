@@ -33,19 +33,19 @@ Function::Function()
 
 Function::Function(const Function& other)
 {
-  m_pIn = new int[m_nTerms];
-  m_pOut = new int[m_nTerms];
-  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof(int));
-  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof(int));
+  m_pIn = new unsigned long[m_nTerms];
+  m_pOut = new unsigned long[m_nTerms];
+  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof(unsigned long));
+  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof(unsigned long));
 }
 
 
 Function& Function::operator=(const Function& other)
 {
-  m_pIn = new int[m_nTerms];
-  m_pOut = new int[m_nTerms];
-  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof(int));
-  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof(int));
+  m_pIn = new unsigned long[m_nTerms];
+  m_pOut = new unsigned long[m_nTerms];
+  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof(unsigned long));
+  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof(unsigned long));
   return *this;
 }
 
@@ -72,8 +72,8 @@ void Function::load_file(string pfilename)
    vector<string> strs;
    boost::split(strs, specification, boost::is_any_of("\n"));
 
-   m_pIn = new int[strs.size()];
-   m_pOut = new int[strs.size()]; 
+   m_pIn = new unsigned long[strs.size()];
+   m_pOut = new unsigned long[strs.size()]; 
  
    m_nTerms =0;
    for(int i=0; i<strs.size(); i++) {

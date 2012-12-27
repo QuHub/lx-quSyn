@@ -27,8 +27,8 @@ public:
   int m_nBits;
   int m_nRadix;
   int m_nTerms;
-  int *m_pIn;
-  int *m_pOut;
+  unsigned long *m_pIn;
+  unsigned long *m_pOut;
   
 Function();
 void load_file(string pfilename);
@@ -36,6 +36,10 @@ Function(const Function& other);
 virtual ~Function();
 virtual Function& operator=(const Function& other);
 int bits() {return m_nBits;}
+int radix() {return m_nRadix;}
+int terms() {return m_nTerms;}
+unsigned long *inputs() {return m_pIn;}
+unsigned long *outputs() {return m_pOut;}
 };
 
 #endif // FUNCTION_H

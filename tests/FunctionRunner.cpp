@@ -1,8 +1,8 @@
 /*
- * File:   CoveredSetPartitionRunner.cpp
+ * File:   FunctionRunner.cpp
  * Author: mmh
  *
- * Created on Dec 26, 2012, 7:04:33 AM
+ * Created on Dec 27, 2012, 9:56:37 AM
  */
 
 #include <cppunit/BriefTestProgressListener.h>
