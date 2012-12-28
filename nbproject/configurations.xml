@@ -50,6 +50,14 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f3"
+                     displayName="CoveredSetPartition Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/CoveredSetPartitionRunner.cpp</itemPath>
+        <itemPath>tests/CoveredSetPatitionTest.cpp</itemPath>
+        <itemPath>tests/CoveredSetPatitionTest.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="Function" projectFiles="true" kind="TEST">
         <itemPath>tests/FunctionRunner.cpp</itemPath>
         <itemPath>tests/FunctionTest.cpp</itemPath>
@@ -151,6 +159,24 @@
           <output>${TESTDIR}/TestFiles/f2</output>
           <linkerLibItems>
             <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
             <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>

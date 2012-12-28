@@ -53,6 +53,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f1 \
 	${TESTDIR}/TestFiles/f2
 
@@ -145,6 +146,10 @@ ${OBJECTDIR}/support/Helper.o: support/Helper.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/CoveredSetPartitionRunner.o ${TESTDIR}/tests/CoveredSetPatitionTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} -lcppunit 
+
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/FunctionRunner.o ${TESTDIR}/tests/FunctionTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcppunit -lcppunit -lcppunit 
@@ -152,6 +157,18 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/FunctionRunner.o ${TESTDIR}/tests/Func
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/HasseRunner.o ${TESTDIR}/tests/HasseTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcppunit -lcppunit 
+
+
+${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionRunner.o tests/CoveredSetPartitionRunner.cpp
+
+
+${TESTDIR}/tests/CoveredSetPatitionTest.o: tests/CoveredSetPatitionTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPatitionTest.o tests/CoveredSetPatitionTest.cpp
 
 
 ${TESTDIR}/tests/FunctionRunner.o: tests/FunctionRunner.cpp 
@@ -338,6 +355,7 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	else  \

@@ -18,6 +18,15 @@
 #include "Synthesizer.h"
 #include "coveredsetpartition.h"
 
+void dump(unsigned long *p, int length)
+{
+  cout << "\nbegin memory dump: ******* at: " << p << "\n";
+  for(int i=0; i<length; i++) 
+    cout << p[i] << " ";
+
+  cout << "end memory dump: ******* at: " << p << "\n";
+}
+
 CoveredSetPartition::CoveredSetPartition()
 {
 	m_pin = new unsigned long[m_function->m_nTerms];
@@ -28,9 +37,10 @@ CoveredSetPartition::CoveredSetPartition()
 	unsigned long *buf = new unsigned long[m_max_terms];
 	unsigned long *p= buf;
 	for (int i=0; i<m_sets; i++) {
-		p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::ParitionSize));											
+    p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::partition_size()));											
 	}
-  copy_terms_in_function(buf);
+
+  //copy_terms_in_function(buf);
   delete buf;
 }
 
@@ -56,10 +66,10 @@ void CoveredSetPartition::synthesize()
 void CoveredSetPartition::initialize(Function *pfunction, int partition_size)
 {
   m_function = pfunction;
-	m_parameters[CoveredSetPartition::ParitionSize] = partition_size;
-	m_sets = pow(2, m_parameters[CoveredSetPartition::ParitionSize]);
+	m_partition_size = partition_size;
+	m_sets = pow(2, m_partition_size);
   m_max_terms = pow(2, pfunction->m_nBits);
-  m_hasse.initialize(pfunction->m_nBits);
+  m_hasse.initialize(pfunction->m_nBits - m_partition_size);
 }
 
 CoveredSetPartition::CoveredSetPartition(const CoveredSetPartition& other)

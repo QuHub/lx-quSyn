@@ -20,7 +20,6 @@ public:
     }
 	}
  ~Mutex(){
-		cout << "destroying mutex\n";
 		pthread_mutex_destroy(&m_lock);
 	};
 

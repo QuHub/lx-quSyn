@@ -54,6 +54,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
+	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
 
 # C Compiler Flags
@@ -145,6 +146,10 @@ ${OBJECTDIR}/support/Helper.o: support/Helper.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/CoveredSetPartitionRunner.o ${TESTDIR}/tests/CoveredSetPatitionTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
+
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/FunctionRunner.o ${TESTDIR}/tests/FunctionTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
@@ -152,6 +157,18 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/FunctionRunner
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/HasseRunner.o ${TESTDIR}/tests/HasseTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
+
+
+${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPartitionRunner.o tests/CoveredSetPartitionRunner.cpp
+
+
+${TESTDIR}/tests/CoveredSetPatitionTest.o: tests/CoveredSetPatitionTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/CoveredSetPatitionTest.o tests/CoveredSetPatitionTest.cpp
 
 
 ${TESTDIR}/tests/FunctionRunner.o: tests/FunctionRunner.cpp 
@@ -338,6 +355,7 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	else  \

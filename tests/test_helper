@@ -1,3 +1,15 @@
+#include <vector>
+#include <unordered_set>
+#include <cppunit/extensions/HelperMacros.h>
+
 #define assert_equal CPPUNIT_ASSERT_EQUAL
 #define assert       CPPUNIT_ASSERT
 
+using namespace std;
+
+void assert_equal_vectors(vector<unsigned long> expected, vector<unsigned long> actual)
+{
+  unordered_set<unsigned long> expected_set(expected.begin(), expected.end());
+  unordered_set<unsigned long> actual_set(actual.begin(), actual.end());
+  assert(expected_set == actual_set);
+}

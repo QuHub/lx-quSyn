@@ -23,33 +23,31 @@
 class CoveredSetPartition : public Algorithm
 {
 public:
-	enum {
-		ParitionSize	
-	};
-public:
 	CoveredSetPartition();
 	CoveredSetPartition(const CoveredSetPartition& other);
 	void synthesize();
 	virtual ~CoveredSetPartition();
 	virtual CoveredSetPartition& operator=(const CoveredSetPartition& other);
 	static void initialize(Function *pfunction, int number_of_partitions);
-	int& operator[] (int key) {
-		return m_parameters[key];
-	}
 	static void add_cli_options();
+  int num_sets() {return m_sets;}
+  int num_max_terms() {return m_max_terms;}
+  int num_terms() {return m_function->terms();}
+  int partition_size() {return m_partition_size;}
+  Function* function() {return m_function;}
 private:
   void copy_terms_in_function(unsigned long *p);
 	static int m_sets;
 	static int m_max_terms;
+	static int m_partition_size;
   static Function *m_function;
-	static map<int,int> m_parameters;
   static Hasse m_hasse;
 };
 
 #ifdef DEFINE_STATICS
 	int CoveredSetPartition::m_sets;
 	int CoveredSetPartition::m_max_terms;
-	map<int,int> CoveredSetPartition::m_parameters;
+	int CoveredSetPartition::m_partition_size;
   Function *CoveredSetPartition::m_function;
   Hasse CoveredSetPartition::m_hasse;
 #endif

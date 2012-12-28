@@ -1,0 +1,31 @@
+signature:
+  function: function 4
+
+defaults: &defaults
+  radix: 2
+
+inputs: 
+  radix: 2
+  variables: 4
+
+outputs:
+  <<: *defaults
+  variables: 4
+  
+specification: |
+  0000 0111
+  0001 1111
+  0010 0110
+  0011 1110
+  0100 0000
+  0101 1101
+  0110 0101
+  0111 1010
+  1000 1001
+  1001 1100
+  1010 1000
+  1011 0010
+  1100 0100
+  1101 1011
+  1110 0011
+  1111 0001

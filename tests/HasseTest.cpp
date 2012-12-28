@@ -8,8 +8,6 @@
 #include "test_helper"
 #include "HasseTest.h"
 #include "common.h"
-#include <unordered_set>
-#define random_shuffle(x,y) (x,y)
 #include "Hasse.h"
 
 
@@ -40,28 +38,21 @@ void HasseTest::testMethod() {
   assert_equal(1UL, hasse.band()[3].size());
 }
 
-void assert_equal_bands(vector<unsigned long> expected, vector<unsigned long> actual)
-{
-  unordered_set<unsigned long> expected_set(expected.begin(), expected.end());
-  unordered_set<unsigned long> actual_set(actual.begin(), actual.end());
-  assert(expected_set == actual_set);
-}
-
 void HasseTest::testBands() {
   Hasse hasse;
   hasse.initialize(3);
 
   vector<unsigned long> expected({0});
-  assert_equal_bands(expected, hasse.band()[0]);
+  assert_equal_vectors(expected, hasse.band()[0]);
 
   expected.assign({1,2,4});
-  assert_equal_bands(expected, hasse.band()[1]);
+  assert_equal_vectors(expected, hasse.band()[1]);
 
   expected.assign({3,5,6});
-  assert_equal_bands(expected, hasse.band()[2]);
+  assert_equal_vectors(expected, hasse.band()[2]);
   
   expected.assign({7});
-  assert_equal_bands(expected, hasse.band()[3]);
+  assert_equal_vectors(expected, hasse.band()[3]);
 }
 
 
@@ -76,5 +67,5 @@ void HasseTest::test_get() {
 
   vector<unsigned long> expected({10, 11, 12, 13, 14, 15, 16, 17});
   vector<unsigned long> actual(p, p+8);
-  assert_equal_bands(expected, actual);
+  assert_equal_vectors(expected, actual);
 }
