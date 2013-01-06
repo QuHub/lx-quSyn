@@ -35,8 +35,22 @@ void FunctionTest::testMethod() {
   unsigned long *outputs= function.outputs();
 
   assert_equal(0UL, inputs[0]);
-  assert_equal(222UL, inputs[26]);
-  
+  assert_equal(26UL, inputs[26]);
+
   assert_equal(1UL, outputs[0]);
   assert_equal(1UL, outputs[26]);
+}
+
+void FunctionTest::test_decimal() {
+  Function function;
+  function.radix(2);
+  assert_equal(2UL, function.decimal("10"));
+  assert_equal(6UL, function.decimal("110"));
+  assert_equal(14UL, function.decimal("001110"));
+
+  function.radix(3);
+  assert_equal(3UL, function.decimal("10"));
+  assert_equal(15UL, function.decimal("120"));
+  assert_equal(525UL, function.decimal("201110"));
+
 }

@@ -14,6 +14,7 @@ class FunctionTest : public CPPUNIT_NS::TestFixture {
   CPPUNIT_TEST_SUITE(FunctionTest);
 
   CPPUNIT_TEST(testMethod);
+  CPPUNIT_TEST(test_decimal);
 
   CPPUNIT_TEST_SUITE_END();
 
@@ -25,6 +26,7 @@ public:
 
 private:
   void testMethod();
+  void test_decimal();
 };
 
 #endif	/* FUNCTIONTEST_H */

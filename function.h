@@ -31,17 +31,18 @@ public:
   unsigned long *m_pOut;
   int has_input(unsigned long term);
   void dump();
-  
-Function();
-void load_file(string pfilename);
-Function(const Function& other);
-virtual ~Function();
-virtual Function& operator=(const Function& other);
-int bits() {return m_nBits;}
-int radix() {return m_nRadix;}
-int terms() {return m_nTerms;}
-unsigned long *inputs() {return m_pIn;}
-unsigned long *outputs() {return m_pOut;}
+
+  Function();
+  unsigned long decimal(string str);
+  void load_file(string pfilename);
+  Function(const Function& other);
+  virtual ~Function();
+  virtual Function& operator=(const Function& other);
+  int bits(int bits=0) {if(bits > 0) m_nBits = bits;    return m_nBits;}
+  int radix(int radix=0) {if(radix>0) m_nRadix = radix; return m_nRadix;}
+  int terms() {return m_nTerms;}
+  unsigned long *inputs() {return m_pIn;}
+  unsigned long *outputs() {return m_pOut;}
 };
 
 #endif // FUNCTION_H

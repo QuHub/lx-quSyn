@@ -84,10 +84,21 @@ void Function::load_file(string pfilename) {
 
     vector<string> in_out;
     boost::split(in_out, value, boost::is_any_of(" "));
-    m_pIn[m_nTerms] = atoi(in_out[0].c_str());
-    m_pOut[m_nTerms] = atoi(in_out[1].c_str());
+    m_pIn[m_nTerms] = decimal(in_out[0].c_str());
+    m_pOut[m_nTerms] = decimal(in_out[1].c_str());
     m_nTerms++;
   }
+}
+
+unsigned long Function::decimal(string str) {
+  unsigned long result=0;
+
+  for(int i=0; i<str.size(); i++) {
+    result += str[i] - '0';
+    result *= m_nRadix;
+  }
+  
+  return result / m_nRadix;
 }
 
 void Function::dump() {
