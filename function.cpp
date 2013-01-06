@@ -12,7 +12,7 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-*/
+ */
 
 #define BOOST_FILESYSTEM_NO_DEPRECATED
 #define BOOST_SYSTEM_NO_DEPRECATED
@@ -22,68 +22,77 @@
 #include "boost/filesystem.hpp"
 #include <boost/algorithm/string.hpp>
 
-namespace bf= boost::filesystem;
+namespace bf = boost::filesystem;
 using namespace std;
 using namespace boost;
 
-Function::Function()
-{
+Function::Function() {
+  m_pIn = NULL;
+  m_pOut = NULL;
 }
 
-
-Function::Function(const Function& other)
-{
+Function::Function(const Function& other) {
   m_pIn = new unsigned long[m_nTerms];
   m_pOut = new unsigned long[m_nTerms];
-  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof(unsigned long));
-  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof(unsigned long));
+  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof (unsigned long));
+  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof (unsigned long));
 }
 
-
-Function& Function::operator=(const Function& other)
-{
+Function& Function::operator=(const Function& other) {
   m_pIn = new unsigned long[m_nTerms];
   m_pOut = new unsigned long[m_nTerms];
-  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof(unsigned long));
-  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof(unsigned long));
+  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof (unsigned long));
+  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof (unsigned long));
   return *this;
 }
 
-Function::~Function()
-{
+Function::~Function() {
   cout << "destroying\n";
-  delete m_pIn;
-  delete m_pOut;
+  if(m_pIn) delete m_pIn;
+  if(m_pOut) delete m_pOut;
 }
 
-void Function::load_file(string pfilename)
-{
+int Function::has_input(unsigned long term) {
+  for(int i=0; i<m_nTerms; i++)
+    if(m_pIn[i] == term) return i;
+
+    return -1;
+}
+
+void Function::load_file(string pfilename) {
   bf::path p(".");
   bf::path pa = bf::current_path();
-  
-//  YAML::Node config = YAML::LoadFile(Option::m_fileName);
+
+  //  YAML::Node config = YAML::LoadFile(Option::m_fileName);
   YAML::Node config = YAML::LoadFile(pfilename);
   YAML::Node temp = config["signature"];
-  m_functionName = temp["function"].as<string>();
-   m_fileName = pfilename;
-   m_nBits = config["inputs"]["variables"].as<int>();
-   m_nRadix = config["inputs"]["radix"].as<int>();
-   string specification = config["specification"].as<string>();
-   vector<string> strs;
-   boost::split(strs, specification, boost::is_any_of("\n"));
+  m_functionName = temp["function"].as<string > ();
+  m_fileName = pfilename;
+  m_nBits = config["inputs"]["variables"].as<int>();
+  m_nRadix = config["inputs"]["radix"].as<int>();
+  string specification = config["specification"].as<string > ();
+  vector<string> strs;
+  boost::split(strs, specification, boost::is_any_of("\n"));
 
-   m_pIn = new unsigned long[strs.size()];
-   m_pOut = new unsigned long[strs.size()]; 
- 
-   m_nTerms =0;
-   for(int i=0; i<strs.size(); i++) {
-     string value = strs[i];
-     if(value == "") continue;
-     
-     vector<string> in_out;
-     boost::split(in_out, value, boost::is_any_of(" "));
-     m_pIn[m_nTerms] = atoi(in_out[0].c_str());
-     m_pOut[m_nTerms] = atoi(in_out[1].c_str());
-     m_nTerms++;
-   }
+  m_pIn = new unsigned long[strs.size()];
+  m_pOut = new unsigned long[strs.size()];
+
+  m_nTerms = 0;
+  for (int i = 0; i < strs.size(); i++) {
+    string value = strs[i];
+    if (value == "") continue;
+
+    vector<string> in_out;
+    boost::split(in_out, value, boost::is_any_of(" "));
+    m_pIn[m_nTerms] = atoi(in_out[0].c_str());
+    m_pOut[m_nTerms] = atoi(in_out[1].c_str());
+    m_nTerms++;
+  }
+}
+
+void Function::dump() {
+  cout << "\nFunction: \n";
+  for(int i=0; i<m_nTerms; i++) {
+    cout << m_pIn[i] << " => " << m_pOut[i] << "\n";
+  }
 }

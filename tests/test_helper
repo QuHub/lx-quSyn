@@ -7,8 +7,19 @@
 
 using namespace std;
 
+void dump_vector(string name, vector<unsigned long> v) {
+  cout << "\n" << name << "\n";
+  for(int i=0; i<v.size(); i++) {
+    cout << v[i] << " ";
+  }
+
+  cout << "\n\n";
+}
 void assert_equal_vectors(vector<unsigned long> expected, vector<unsigned long> actual)
 {
+  dump_vector("expected", expected);
+  dump_vector("actual", actual);
+
   unordered_set<unsigned long> expected_set(expected.begin(), expected.end());
   unordered_set<unsigned long> actual_set(actual.begin(), actual.end());
   assert(expected_set == actual_set);

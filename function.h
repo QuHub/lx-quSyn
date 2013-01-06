@@ -29,6 +29,8 @@ public:
   int m_nTerms;
   unsigned long *m_pIn;
   unsigned long *m_pOut;
+  int has_input(unsigned long term);
+  void dump();
   
 Function();
 void load_file(string pfilename);

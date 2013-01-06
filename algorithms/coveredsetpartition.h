@@ -35,8 +35,8 @@ public:
   int num_terms() {return m_function->terms();}
   int partition_size() {return m_partition_size;}
   Function* function() {return m_function;}
-private:
   void copy_terms_in_function(unsigned long *p);
+private:
 	static int m_sets;
 	static int m_max_terms;
 	static int m_partition_size;

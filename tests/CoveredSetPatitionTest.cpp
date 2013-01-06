@@ -39,3 +39,20 @@ void CoveredSetPatitionTest::test_initialize() {
   assert(csp.function() == &function);
 }
 
+void CoveredSetPatitionTest::test_copy_terms_in_function() {
+  Function function;
+  function.load_file("./tests/fixtures/function-4.xqs");
+
+  CoveredSetPartition::initialize(&function, 2);
+  CoveredSetPartition csp;
+  function.dump();
+
+  unsigned long p[] = {0, 2, 1, 4, 5, 3, 7, 6, 8, 9, 10, 12, 11, 14, 15, 13};
+  vector<unsigned long> expected(p, p+16);
+  csp.copy_terms_in_function(p);
+
+  unsigned long *pInput = csp.inputs();
+  vector<unsigned long> actual(pInput, pInput + 16);
+  assert_equal_vectors(expected, actual);
+
+}

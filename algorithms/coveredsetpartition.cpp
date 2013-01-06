@@ -21,7 +21,7 @@
 void dump(unsigned long *p, int length)
 {
   cout << "\nbegin memory dump: ******* at: " << p << "\n";
-  for(int i=0; i<length; i++) 
+  for(int i=0; i<length; i++)
     cout << p[i] << " ";
 
   cout << "end memory dump: ******* at: " << p << "\n";
@@ -31,13 +31,13 @@ CoveredSetPartition::CoveredSetPartition()
 {
 	m_pin = new unsigned long[m_function->m_nTerms];
 	m_pout = new unsigned long[m_function->m_nTerms];
-	
+
 	// Build input vector with m_sets of bands and each band has a Hasse structure
 	//
 	unsigned long *buf = new unsigned long[m_max_terms];
 	unsigned long *p= buf;
 	for (int i=0; i<m_sets; i++) {
-    p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::partition_size()));											
+    p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::partition_size()));
 	}
 
   //copy_terms_in_function(buf);
@@ -46,16 +46,14 @@ CoveredSetPartition::CoveredSetPartition()
 
 void CoveredSetPartition::copy_terms_in_function(unsigned long *p)
 {
-  unsigned long *mapping = new unsigned long[m_max_terms];
-  for(int i=0; i<m_max_terms; i++) 
-    mapping[p[i]] = i;
-
-  for (int i=0; i<m_function->m_nTerms; i++) {
-    m_pin[i] = mapping[m_function->m_pIn[i]];
-    m_pout[i] = m_function->m_pOut[i];
+  int j;
+  for (int i=0; i<m_max_terms; i++) {
+    if((j = m_function->has_input(p[i])) >= 0) {
+      m_pin[j] = p[i];
+      m_pout[j] = m_function->outputs()[j];
+    }
   }
-  
-  delete mapping;
+
 }
 void CoveredSetPartition::synthesize()
 {
