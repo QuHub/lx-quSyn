@@ -46,11 +46,11 @@ CoveredSetPartition::CoveredSetPartition()
 
 void CoveredSetPartition::copy_terms_in_function(unsigned long *p)
 {
-  int j;
+  int j=0, k;
   for (int i=0; i<m_max_terms; i++) {
-    if((j = m_function->has_input(p[i])) >= 0) {
+    if((k = m_function->has_input(p[i])) >= 0) {
       m_pin[j] = p[i];
-      m_pout[j] = m_function->outputs()[j];
+      m_pout[j++] = m_function->outputs()[k];
     }
   }
 

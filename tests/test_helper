@@ -15,7 +15,17 @@ void dump_vector(string name, vector<unsigned long> v) {
 
   cout << "\n\n";
 }
-void assert_equal_vectors(vector<unsigned long> expected, vector<unsigned long> actual)
+
+void dump_set(string name, set<unsigned long> v) {
+  cout << "\n" << name << "\n";
+
+  for (std::set<unsigned long>::iterator it=v.begin(); it!=v.end(); ++it)
+    cout << ' ' << *it;
+
+  cout << '\n';
+}
+
+void assert_equivalent_vectors(vector<unsigned long> expected, vector<unsigned long> actual)
 {
   dump_vector("expected", expected);
   dump_vector("actual", actual);
@@ -23,4 +33,13 @@ void assert_equal_vectors(vector<unsigned long> expected, vector<unsigned long> 
   unordered_set<unsigned long> expected_set(expected.begin(), expected.end());
   unordered_set<unsigned long> actual_set(actual.begin(), actual.end());
   assert(expected_set == actual_set);
+}
+
+void assert_equal_vectors(vector<unsigned long> expected, vector<unsigned long> actual)
+{
+  if(expected != actual) {
+    dump_vector("expected", expected);
+    dump_vector("actual", actual);
+  }
+  assert(expected == actual);
 }

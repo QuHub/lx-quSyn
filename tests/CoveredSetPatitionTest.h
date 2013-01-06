@@ -15,6 +15,7 @@ class CoveredSetPatitionTest : public CPPUNIT_NS::TestFixture {
 
   CPPUNIT_TEST(test_initialize);
   CPPUNIT_TEST(test_copy_terms_in_function);
+  CPPUNIT_TEST(test_copy_terms_in_incomplete_function);
 
   CPPUNIT_TEST_SUITE_END();
 
@@ -27,6 +28,7 @@ public:
 private:
   void test_initialize();
   void test_copy_terms_in_function();
+  void test_copy_terms_in_incomplete_function();
 };
 
 #endif	/* COVEREDSETPATITIONTEST_H */
