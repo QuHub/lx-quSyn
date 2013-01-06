@@ -41,7 +41,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/conductors/randomconductor.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/option.o \
-	${OBJECTDIR}/algorithms/Algorithm.o \
 	${OBJECTDIR}/conductors/conductor.o \
 	${OBJECTDIR}/support/Queue.o \
 	${OBJECTDIR}/support/Thread.o \
@@ -110,11 +109,6 @@ ${OBJECTDIR}/option.o: option.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/option.o option.cpp
-
-${OBJECTDIR}/algorithms/Algorithm.o: algorithms/Algorithm.cpp 
-	${MKDIR} -p ${OBJECTDIR}/algorithms
-	${RM} $@.d
-	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/Algorithm.o algorithms/Algorithm.cpp
 
 ${OBJECTDIR}/conductors/conductor.o: conductors/conductor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/conductors
@@ -271,19 +265,6 @@ ${OBJECTDIR}/option_nomain.o: ${OBJECTDIR}/option.o option.cpp
 	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/option_nomain.o option.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/option.o ${OBJECTDIR}/option_nomain.o;\
-	fi
-
-${OBJECTDIR}/algorithms/Algorithm_nomain.o: ${OBJECTDIR}/algorithms/Algorithm.o algorithms/Algorithm.cpp 
-	${MKDIR} -p ${OBJECTDIR}/algorithms
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/algorithms/Algorithm.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/Algorithm_nomain.o algorithms/Algorithm.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/algorithms/Algorithm.o ${OBJECTDIR}/algorithms/Algorithm_nomain.o;\
 	fi
 
 ${OBJECTDIR}/conductors/conductor_nomain.o: ${OBJECTDIR}/conductors/conductor.o conductors/conductor.cpp 
