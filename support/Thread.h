@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Thread.h
  * Author: mmh
  *
@@ -20,7 +20,6 @@ class Thread
       virtual void Execute(void*);
       void * Arg() const {return Arg_;}
       void Arg(void* a){Arg_ = a;}
-   private:
       pthread_t m_id;
       void * Arg_;
 

@@ -40,7 +40,7 @@ CoveredSetPartition::CoveredSetPartition()
     p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::partition_size()));
 	}
 
-  //copy_terms_in_function(buf);
+  copy_terms_in_function(buf);
   delete buf;
 }
 
@@ -49,6 +49,9 @@ void CoveredSetPartition::copy_terms_in_function(unsigned long *p)
   int j=0, k;
   for (int i=0; i<m_max_terms; i++) {
     if((k = m_function->has_input(p[i])) >= 0) {
+      if(j>m_function->terms())
+        throw "Exceeding limit of function";
+
       m_pin[j] = p[i];
       m_pout[j++] = m_function->outputs()[k];
     }
@@ -70,6 +73,10 @@ void CoveredSetPartition::initialize(Function *pfunction, int partition_size)
   m_hasse.initialize(pfunction->m_nBits - m_partition_size);
 }
 
+void CoveredSetPartition::release() {
+  m_hasse.release();
+}
+
 CoveredSetPartition::CoveredSetPartition(const CoveredSetPartition& other)
 {
 
@@ -77,7 +84,7 @@ CoveredSetPartition::CoveredSetPartition(const CoveredSetPartition& other)
 
 CoveredSetPartition::~CoveredSetPartition()
 {
-	delete m_pin;
+ 	delete m_pin;
 	delete m_pout;
 }
 

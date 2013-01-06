@@ -37,6 +37,7 @@ void CoveredSetPatitionTest::test_initialize() {
   assert_equal(16, csp.num_terms());
   assert_equal(2, csp.partition_size());
   assert(csp.function() == &function);
+  
 }
 
 void CoveredSetPatitionTest::test_copy_terms_in_function() {

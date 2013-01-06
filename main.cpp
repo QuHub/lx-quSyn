@@ -61,8 +61,9 @@ void add_cli_options() {
 int main(int argc, char** argv) {
   Option::init(argc, argv);
   Function function;
+  function.load_file("./tests/fixtures/function-4.xqs");
   CoveredSetPartition::initialize(&function, 2);
-  RandomConductor algo(function);
+  RandomConductor algo(&function);
   algo.synthesize();
   return 0;
 }

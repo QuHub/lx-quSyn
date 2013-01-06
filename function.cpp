@@ -31,23 +31,8 @@ Function::Function() {
   m_pOut = NULL;
 }
 
-Function::Function(const Function& other) {
-  m_pIn = new unsigned long[m_nTerms];
-  m_pOut = new unsigned long[m_nTerms];
-  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof (unsigned long));
-  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof (unsigned long));
-}
-
-Function& Function::operator=(const Function& other) {
-  m_pIn = new unsigned long[m_nTerms];
-  m_pOut = new unsigned long[m_nTerms];
-  memcpy(m_pIn, other.m_pIn, m_nTerms * sizeof (unsigned long));
-  memcpy(m_pOut, other.m_pOut, m_nTerms * sizeof (unsigned long));
-  return *this;
-}
 
 Function::~Function() {
-  cout << "destroying\n";
   if(m_pIn) delete m_pIn;
   if(m_pOut) delete m_pOut;
 }
@@ -97,7 +82,7 @@ unsigned long Function::decimal(string str) {
     result += str[i] - '0';
     result *= m_nRadix;
   }
-  
+
   return result / m_nRadix;
 }
 

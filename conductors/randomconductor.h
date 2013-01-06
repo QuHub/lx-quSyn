@@ -24,11 +24,11 @@
 
 class RandomConductor : public Conductor
 {
-  Function m_function;
- 
+  Function *m_function;
+
 public:
 RandomConductor();
-RandomConductor(Function &);
+RandomConductor(Function *);
 void synthesize();
 virtual ~RandomConductor();
 };

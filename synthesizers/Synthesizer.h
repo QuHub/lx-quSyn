@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Synthesizer.h
  * Author: mmh
  *
@@ -15,7 +15,6 @@
 class Synthesizer : public Thread {
 public:
   Synthesizer();
-  Synthesizer(const Synthesizer& orig);
   virtual ~Synthesizer();
 	void Execute(void*);
 	inline int Lock(int flag=0) {return m_Mutex.Lock(flag);}

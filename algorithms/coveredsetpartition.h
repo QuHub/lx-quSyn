@@ -23,19 +23,23 @@
 class CoveredSetPartition : public Algorithm
 {
 public:
-	CoveredSetPartition();
+	static void initialize(Function *pfunction, int number_of_partitions);
+	static void add_cli_options();
+  static void release();
+
+  CoveredSetPartition();
 	CoveredSetPartition(const CoveredSetPartition& other);
 	void synthesize();
 	virtual ~CoveredSetPartition();
 	virtual CoveredSetPartition& operator=(const CoveredSetPartition& other);
-	static void initialize(Function *pfunction, int number_of_partitions);
-	static void add_cli_options();
+
   int num_sets() {return m_sets;}
   int num_max_terms() {return m_max_terms;}
   int num_terms() {return m_function->terms();}
   int partition_size() {return m_partition_size;}
   Function* function() {return m_function;}
   void copy_terms_in_function(unsigned long *p);
+
 private:
 	static int m_sets;
 	static int m_max_terms;

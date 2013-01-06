@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   Queue.cpp
  * Author: mmh
- * 
+ *
  * Created on December 24, 2012, 6:13 PM
  */
 
@@ -19,7 +19,7 @@ Queue::~Queue() {
 }
 
 void Queue::Push(Algorithm *qa) {
-	Lock(); 
+	Lock();
 	m_queue.push(qa);
 	Release();
 }

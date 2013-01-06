@@ -32,7 +32,7 @@ public:
   }
 
   void release() {
-    delete []m_pbands;
+    delete m_pbands;
   }
 
   int bits() {

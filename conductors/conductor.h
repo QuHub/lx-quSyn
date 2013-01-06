@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   conductor.h
  * Author: mmh
  *
@@ -14,7 +14,7 @@ class Conductor {
 public:
   int m_nThreads;
   Synthesizer *m_Synthesizers;
-    
+
 public:
 	Conductor();
 	Conductor(const Conductor& orig);
@@ -22,9 +22,7 @@ public:
 	void WaitForQueue();
 
 protected:
-	Mutex m_Mutex;
-	inline void Lock() {m_Mutex.Lock();}
-	inline void Release() {m_Mutex.Release();}
+
 };
 
 #endif	/* CONDUCTOR_H */
