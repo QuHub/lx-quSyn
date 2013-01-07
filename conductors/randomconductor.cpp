@@ -19,8 +19,8 @@
 #include "coveredsetpartition.h"
 #include "randomconductor.h"
 
-#define N_BATCH 1000
-#define N_RUNS  30
+#define N_BATCH 1024
+#define N_RUNS  1024
 
 RandomConductor::RandomConductor()
 {
@@ -39,12 +39,12 @@ void RandomConductor::synthesize()
   CoveredSetPartition *pAlgo[N_BATCH];
 
   for (int j=0; j<N_RUNS; j++) {
-    cout << "Run: " << j << "\n";
+    cout << "Run: " << j << "\r";
 
     for (int i=0; i<N_BATCH; i++) {
       pAlgo[i] = new CoveredSetPartition();
       pAlgo[i]->synthesize();
-      pAlgo[i]->inspect();
+      //pAlgo[i]->inspect();
     }
 
  		WaitForQueue();

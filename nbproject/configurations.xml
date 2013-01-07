@@ -31,8 +31,12 @@
         <itemPath>support/Helper.h</itemPath>
         <itemPath>support/Inspector.h</itemPath>
         <itemPath>support/Mutex.h</itemPath>
+        <itemPath>support/QRBG.cpp</itemPath>
+        <itemPath>support/QRBG.h</itemPath>
         <itemPath>support/Queue.cpp</itemPath>
         <itemPath>support/Queue.h</itemPath>
+        <itemPath>support/Rand.cpp</itemPath>
+        <itemPath>support/Rand.h</itemPath>
         <itemPath>support/Thread.cpp</itemPath>
         <itemPath>support/Thread.h</itemPath>
       </logicalFolder>
@@ -220,6 +224,15 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>conductors</pElem>
+            <pElem>algorithms</pElem>
+            <pElem>.</pElem>
+            <pElem>support</pElem>
+            <pElem>synthesizers</pElem>
+            <pElem>.</pElem>
+          </incDir>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -227,6 +240,14 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>`pkg-config --libs yaml-cpp`</linkerOptionItem>
+            <linkerLibLibItem>boost_filesystem</linkerLibLibItem>
+            <linkerLibLibItem>boost_program_options</linkerLibLibItem>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
     </conf>
   </confs>

@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
   Option::init(argc, argv);
   Function function;
   function.load_file("./tests/fixtures/function-4.xqs");
-  CoveredSetPartition::initialize(&function, 2);
+  CoveredSetPartition::initialize(&function, 0);
   RandomConductor algo(&function);
   algo.synthesize();
   return 0;

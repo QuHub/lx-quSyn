@@ -43,6 +43,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/option.o \
 	${OBJECTDIR}/conductors/conductor.o \
 	${OBJECTDIR}/support/Queue.o \
+	${OBJECTDIR}/support/Rand.o \
+	${OBJECTDIR}/support/QRBG.o \
 	${OBJECTDIR}/support/Thread.o \
 	${OBJECTDIR}/algorithms/coveredsetpartition.o \
 	${OBJECTDIR}/support/Helper.o
@@ -120,6 +122,16 @@ ${OBJECTDIR}/support/Queue.o: support/Queue.cpp
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue.o support/Queue.cpp
+
+${OBJECTDIR}/support/Rand.o: support/Rand.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Rand.o support/Rand.cpp
+
+${OBJECTDIR}/support/QRBG.o: support/QRBG.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/QRBG.o support/QRBG.cpp
 
 ${OBJECTDIR}/support/Thread.o: support/Thread.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
@@ -308,6 +320,32 @@ ${OBJECTDIR}/support/Queue_nomain.o: ${OBJECTDIR}/support/Queue.o support/Queue.
 	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue_nomain.o support/Queue.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/support/Queue.o ${OBJECTDIR}/support/Queue_nomain.o;\
+	fi
+
+${OBJECTDIR}/support/Rand_nomain.o: ${OBJECTDIR}/support/Rand.o support/Rand.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/support/Rand.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Rand_nomain.o support/Rand.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/support/Rand.o ${OBJECTDIR}/support/Rand_nomain.o;\
+	fi
+
+${OBJECTDIR}/support/QRBG_nomain.o: ${OBJECTDIR}/support/QRBG.o support/QRBG.cpp 
+	${MKDIR} -p ${OBJECTDIR}/support
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/support/QRBG.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} $@.d;\
+	    $(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/QRBG_nomain.o support/QRBG.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/support/QRBG.o ${OBJECTDIR}/support/QRBG_nomain.o;\
 	fi
 
 ${OBJECTDIR}/support/Thread_nomain.o: ${OBJECTDIR}/support/Thread.o support/Thread.cpp 

@@ -22,7 +22,7 @@ public:
   int get(ulong *p, int bias) {
     int n = 0;
     for (int i = 0; i < m_bands; i++) {
-      random_shuffle(m_pbands[i].begin(), m_pbands[i].end());
+      random_shuffle(m_pbands[i].begin(), m_pbands[i].end(), Rand::for_random_shuffle);
       for (int j = 0; j < m_pbands[i].size(); j++)
         *p++ = m_pbands[i][j] + bias;
 

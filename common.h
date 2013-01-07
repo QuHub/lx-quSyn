@@ -9,6 +9,7 @@
 
 
 #include "Helper.h"
+#include "Rand.h"
 #include "Hasse.h"
 #include "Inspector.h"
 
