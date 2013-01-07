@@ -1,11 +1,13 @@
+#include <sys/types.h>
+
 namespace Helper
 {
 	bool initialized;
 	int ones[256];
 
   /* returns the number of binary ones in 'num'
-   * 
-   */	
+   *
+   */
 	int count_ones(int num)
 	{
 		int count = 0;
