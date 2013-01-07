@@ -24,14 +24,11 @@ class CoveredSetPartition : public Algorithm
 {
 public:
 	static void initialize(Function *pfunction, int number_of_partitions);
-	static void add_cli_options();
   static void release();
 
   CoveredSetPartition();
-	CoveredSetPartition(const CoveredSetPartition& other);
-	void synthesize();
-	virtual ~CoveredSetPartition();
-	virtual CoveredSetPartition& operator=(const CoveredSetPartition& other);
+  virtual ~CoveredSetPartition();
+ 	void synthesize();
 
   int num_sets() {return m_sets;}
   int num_max_terms() {return m_max_terms;}

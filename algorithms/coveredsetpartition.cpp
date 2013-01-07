@@ -18,6 +18,23 @@
 #include "Synthesizer.h"
 #include "coveredsetpartition.h"
 
+
+//******* class functions
+void CoveredSetPartition::initialize(Function *pfunction, int partition_size)
+{
+  m_function = pfunction;
+	m_partition_size = partition_size;
+	m_sets = pow(2, m_partition_size);
+  m_max_terms = pow(2, pfunction->m_nBits);
+  m_hasse.initialize(pfunction->m_nBits - m_partition_size);
+}
+
+void CoveredSetPartition::release() {
+  m_hasse.release();
+}
+
+
+//******** instance functions
 CoveredSetPartition::CoveredSetPartition()
 {
 	m_pin = new ulong[m_function->m_nTerms];
@@ -34,6 +51,14 @@ CoveredSetPartition::CoveredSetPartition()
   copy_terms_in_function(buf);
   delete buf;
 }
+
+CoveredSetPartition::~CoveredSetPartition()
+{
+ 	REL(m_pin);
+	REL(m_pout);
+}
+
+
 
 void CoveredSetPartition::copy_terms_in_function(ulong *p)
 {
@@ -55,45 +80,12 @@ void CoveredSetPartition::synthesize()
 }
 
 
-void CoveredSetPartition::initialize(Function *pfunction, int partition_size)
-{
-  m_function = pfunction;
-	m_partition_size = partition_size;
-	m_sets = pow(2, m_partition_size);
-  m_max_terms = pow(2, pfunction->m_nBits);
-  m_hasse.initialize(pfunction->m_nBits - m_partition_size);
-}
 
-void CoveredSetPartition::release() {
-  m_hasse.release();
-}
 
-CoveredSetPartition::CoveredSetPartition(const CoveredSetPartition& other)
-{
 
-}
 
 void CoveredSetPartition::inspect() {
   dump("inputs:  ", m_pin, m_function->terms());
   dump("outputs: ", m_pout, m_function->terms());
-}
-
-CoveredSetPartition::~CoveredSetPartition()
-{
- 	REL(m_pin);
-	REL(m_pout);
-}
-
-void CoveredSetPartition::add_cli_options()
-{
-	po::options_description desc = Option::Register("Covered Set Partition");
-	desc.add_options()
-		("partition_size", po::value<int>(), "Set partition size")
-	;
-}
-
-CoveredSetPartition& CoveredSetPartition::operator=(const CoveredSetPartition& other)
-{
-	return *this;
 }
 

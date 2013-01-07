@@ -22,6 +22,14 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/qsyn
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Release=qsyn.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/qsyn.tar
+# Release_2 configuration
+CND_PLATFORM_Release_2=GNU-Linux-x86
+CND_ARTIFACT_DIR_Release_2=dist/Release_2/GNU-Linux-x86
+CND_ARTIFACT_NAME_Release_2=qsyn
+CND_ARTIFACT_PATH_Release_2=dist/Release_2/GNU-Linux-x86/qsyn
+CND_PACKAGE_DIR_Release_2=dist/Release_2/GNU-Linux-x86/package
+CND_PACKAGE_NAME_Release_2=qsyn.tar
+CND_PACKAGE_PATH_Release_2=dist/Release_2/GNU-Linux-x86/package/qsyn.tar
 #
 # include compiler specific variables
 #

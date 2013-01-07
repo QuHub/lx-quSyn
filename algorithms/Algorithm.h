@@ -8,17 +8,16 @@
 #ifndef ALGORITHM_H
 #define	ALGORITHM_H
 
-template <class T>
-void REL(T* p) {
-  if(p != NULL)
-    delete p;
-  p = NULL;
-}
+#include <stdio.h>
+using namespace std;
 
 template <class T>
-T* ALLOC(T* p, long size) {
-  if(p == NULL) p = new T[size];
-  return p;
+void REL(T* p) {
+  if(p != NULL)  delete p;
+}
+
+inline ulong* ALLOC(int size) {
+  return new ulong[size];
 }
 
 class Algorithm {
@@ -35,8 +34,8 @@ public:
   virtual int num_bits() {throw "subclass responsibility";}
   long cost(long cost=-1) {if(cost>0) m_cost = cost; return m_cost;}
   long num_gates(long gates=-1) {if(gates>0) m_num_gates = gates; return m_num_gates;}
-  ulong* target() { return ALLOC(m_pcontrol, MAX_NUM_GATES);  }
-  ulong* control() {return ALLOC(m_ptarget, MAX_NUM_GATES); }
+  ulong* target() { return (m_ptarget  = ALLOC(MAX_NUM_GATES));  }
+  ulong* control() {return (m_pcontrol = ALLOC(MAX_NUM_GATES)); }
 
 protected:
   long m_cost;
