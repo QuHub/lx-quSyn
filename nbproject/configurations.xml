@@ -70,6 +70,14 @@
         <itemPath>tests/HasseTest.cpp</itemPath>
         <itemPath>tests/HasseTest.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="f4"
+                     displayName="Synthesizer"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/SynthesizerRunner.cpp</itemPath>
+        <itemPath>tests/SynthesizerTest.cpp</itemPath>
+        <itemPath>tests/SynthesizerTest.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -176,6 +184,24 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f4">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f4</output>
           <linkerLibItems>
             <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
           </linkerLibItems>

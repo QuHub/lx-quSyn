@@ -54,6 +54,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 TESTFILES= \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
+	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn
 
 # C Compiler Flags
@@ -152,6 +153,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/HasseRunner.o 
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${TESTDIR}/tests/SynthesizerRunner.o ${TESTDIR}/tests/SynthesizerTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc}   -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn $^ ${LDLIBSOPTIONS} 
+
 
 ${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -187,6 +192,18 @@ ${TESTDIR}/tests/HasseTest.o: tests/HasseTest.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/HasseTest.o tests/HasseTest.cpp
+
+
+${TESTDIR}/tests/SynthesizerRunner.o: tests/SynthesizerRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/SynthesizerRunner.o tests/SynthesizerRunner.cpp
+
+
+${TESTDIR}/tests/SynthesizerTest.o: tests/SynthesizerTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${TESTDIR}/tests/SynthesizerTest.o tests/SynthesizerTest.cpp
 
 
 ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp 
@@ -336,6 +353,7 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn || true; \

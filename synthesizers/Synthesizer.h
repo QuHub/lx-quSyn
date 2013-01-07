@@ -21,7 +21,7 @@ public:
 	inline int Lock(int flag=0) {return m_Mutex.Lock(flag);}
 	inline void Release() {m_Mutex.Release();}
 	static inline void Add(Algorithm*p) {m_queue.Push(p);}
-private:
+protected:
 
 	Mutex m_Mutex;
   static Queue m_queue;

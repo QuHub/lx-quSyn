@@ -54,7 +54,8 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 TESTFILES= \
 	${TESTDIR}/TestFiles/f3 \
 	${TESTDIR}/TestFiles/f1 \
-	${TESTDIR}/TestFiles/f2
+	${TESTDIR}/TestFiles/f2 \
+	${TESTDIR}/TestFiles/f4
 
 # C Compiler Flags
 CFLAGS=
@@ -152,6 +153,10 @@ ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/HasseRunner.o ${TESTDIR}/tests/HasseTe
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcppunit -lcppunit 
 
+${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/SynthesizerRunner.o ${TESTDIR}/tests/SynthesizerTest.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS} -lcppunit 
+
 
 ${TESTDIR}/tests/CoveredSetPartitionRunner.o: tests/CoveredSetPartitionRunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -187,6 +192,18 @@ ${TESTDIR}/tests/HasseTest.o: tests/HasseTest.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} $@.d
 	$(COMPILE.cc) -g -I. -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${TESTDIR}/tests/HasseTest.o tests/HasseTest.cpp
+
+
+${TESTDIR}/tests/SynthesizerRunner.o: tests/SynthesizerRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${TESTDIR}/tests/SynthesizerRunner.o tests/SynthesizerRunner.cpp
+
+
+${TESTDIR}/tests/SynthesizerTest.o: tests/SynthesizerTest.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} $@.d
+	$(COMPILE.cc) -g -I. -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -I. `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${TESTDIR}/tests/SynthesizerTest.o tests/SynthesizerTest.cpp
 
 
 ${OBJECTDIR}/synthesizers/Synthesizer_nomain.o: ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp 
@@ -339,6 +356,7 @@ ${OBJECTDIR}/support/Helper_nomain.o: ${OBJECTDIR}/support/Helper.o support/Help
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
+	    ${TESTDIR}/TestFiles/f4 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi
