@@ -19,8 +19,8 @@
 #include "coveredsetpartition.h"
 #include "randomconductor.h"
 
-#define N_BATCH 100
-#define N_RUNS  3
+#define N_BATCH 1000
+#define N_RUNS  30
 
 RandomConductor::RandomConductor()
 {
@@ -44,14 +44,16 @@ void RandomConductor::synthesize()
     for (int i=0; i<N_BATCH; i++) {
       pAlgo[i] = new CoveredSetPartition();
       pAlgo[i]->synthesize();
+      pAlgo[i]->inspect();
     }
 
  		WaitForQueue();
 
     for (int i=0; i<N_BATCH; i++) {
-      long qCost; // = m_pAlgo[i]->m_QuantumCost;
+      long qCost = pAlgo[i]->cost();
       if (bestCost > qCost) {
         bestCost = qCost;
+        cout << "Quantum Cost:" << bestCost << "\n";
  //       SaveResult(m_pAlgo[i]);
       }
       delete pAlgo[i];

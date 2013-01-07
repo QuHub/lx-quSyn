@@ -18,15 +18,6 @@
 #include "Synthesizer.h"
 #include "coveredsetpartition.h"
 
-void dump(ulong *p, int length)
-{
-  cout << "\nbegin memory dump: ******* at: " << p << "\n";
-  for(int i=0; i<length; i++)
-    cout << p[i] << " ";
-
-  cout << "end memory dump: ******* at: " << p << "\n";
-}
-
 CoveredSetPartition::CoveredSetPartition()
 {
 	m_pin = new ulong[m_function->m_nTerms];
@@ -82,10 +73,15 @@ CoveredSetPartition::CoveredSetPartition(const CoveredSetPartition& other)
 
 }
 
+void CoveredSetPartition::inspect() {
+  dump("inputs:  ", m_pin, m_function->terms());
+  dump("outputs: ", m_pout, m_function->terms());
+}
+
 CoveredSetPartition::~CoveredSetPartition()
 {
- 	delete m_pin;
-	delete m_pout;
+ 	REL(m_pin);
+	REL(m_pout);
 }
 
 void CoveredSetPartition::add_cli_options()

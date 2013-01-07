@@ -37,10 +37,11 @@ public:
   int num_max_terms() {return m_max_terms;}
   int num_terms() {return m_function->terms();}
   int num_bits() {return m_function->bits();}
-  
+
   int partition_size() {return m_partition_size;}
   Function* function() {return m_function;}
   void copy_terms_in_function(ulong *p);
+  void inspect();
 
 private:
 	static int m_sets;

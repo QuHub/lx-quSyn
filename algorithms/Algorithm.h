@@ -12,6 +12,7 @@ template <class T>
 void REL(T* p) {
   if(p != NULL)
     delete p;
+  p = NULL;
 }
 
 template <class T>
@@ -26,7 +27,7 @@ public:
     m_pin = m_pout = m_pcontrol = m_ptarget = NULL;
   }
   virtual ~Algorithm() {
-    REL(m_pin), REL(m_pout), REL(m_pcontrol), REL(m_ptarget);
+    REL(m_pcontrol), REL(m_ptarget);
   }
   ulong* inputs(){return m_pin;}
   ulong* outputs(){return m_pout;}
@@ -36,7 +37,7 @@ public:
   long num_gates(long gates=-1) {if(gates>0) m_num_gates = gates; return m_num_gates;}
   ulong* target() { return ALLOC(m_pcontrol, MAX_NUM_GATES);  }
   ulong* control() {return ALLOC(m_ptarget, MAX_NUM_GATES); }
-  
+
 protected:
   long m_cost;
 	long m_num_gates;

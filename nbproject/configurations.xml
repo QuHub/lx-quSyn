@@ -29,6 +29,7 @@
       <logicalFolder name="f3" displayName="Support" projectFiles="true">
         <itemPath>support/Helper.cpp</itemPath>
         <itemPath>support/Helper.h</itemPath>
+        <itemPath>support/Inspector.h</itemPath>
         <itemPath>support/Mutex.h</itemPath>
         <itemPath>support/Queue.cpp</itemPath>
         <itemPath>support/Queue.h</itemPath>

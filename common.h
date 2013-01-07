@@ -8,9 +8,9 @@
 #include <algorithm>
 
 
-
 #include "Helper.h"
 #include "Hasse.h"
+#include "Inspector.h"
 
 
 using namespace std;
