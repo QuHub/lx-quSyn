@@ -47,17 +47,17 @@ void CoveredSetPatitionTest::test_copy_terms_in_function() {
   CoveredSetPartition::initialize(&function, 2);
   CoveredSetPartition csp;
 
-  unsigned long p[] = {0, 2, 1, 4, 5, 3, 7, 6, 8, 9, 10, 12, 11, 14, 15, 13};
-  vector<unsigned long> expected(p, p+16);
+  ulong p[] = {0, 2, 1, 4, 5, 3, 7, 6, 8, 9, 10, 12, 11, 14, 15, 13};
+  vector<ulong> expected(p, p+16);
   csp.copy_terms_in_function(p);
 
-  unsigned long *pInput = csp.inputs();
-  vector<unsigned long> actual(pInput, pInput + 16);
+  ulong *pInput = csp.inputs();
+  vector<ulong> actual(pInput, pInput + 16);
   assert_equal_vectors(expected, actual);
 
-  unsigned long pout[] = {7, 6, 15, 0, 13, 14, 10, 5, 9, 12, 8, 4, 2, 3, 1, 11};
+  ulong pout[] = {7, 6, 15, 0, 13, 14, 10, 5, 9, 12, 8, 4, 2, 3, 1, 11};
   expected.assign(pout, pout+16);
-  unsigned long *pOutput = csp.outputs();
+  ulong *pOutput = csp.outputs();
   actual.assign(pOutput, pOutput + 16);
   assert_equal_vectors(expected, actual);
 }
@@ -69,18 +69,18 @@ void CoveredSetPatitionTest::test_copy_terms_in_incomplete_function() {
   CoveredSetPartition::initialize(&function, 2);
   CoveredSetPartition csp;
 
-  unsigned long p[] = {0, 2, 1, 4, 5, 3, 7, 6, 8, 9, 10, 12, 11, 14, 15, 13};
-  unsigned long pin[] = {0, 2, 4, 5, 3, 7, 8, 10, 12, 15};
-  vector<unsigned long> expected(pin, pin+10);
+  ulong p[] = {0, 2, 1, 4, 5, 3, 7, 6, 8, 9, 10, 12, 11, 14, 15, 13};
+  ulong pin[] = {0, 2, 4, 5, 3, 7, 8, 10, 12, 15};
+  vector<ulong> expected(pin, pin+10);
   csp.copy_terms_in_function(p);
 
-  unsigned long *pInput = csp.inputs();
-  vector<unsigned long> actual(pInput, pInput + 10);
+  ulong *pInput = csp.inputs();
+  vector<ulong> actual(pInput, pInput + 10);
   assert_equal_vectors(expected, actual);
 
-  unsigned long pout[] = {7, 6, 0, 13, 14, 10, 9, 8, 4, 1};
+  ulong pout[] = {7, 6, 0, 13, 14, 10, 9, 8, 4, 1};
   expected.assign(pout, pout+10);
-  unsigned long *pOutput = csp.outputs();
+  ulong *pOutput = csp.outputs();
   actual.assign(pOutput, pOutput + 10);
   assert_equal_vectors(expected, actual);
 }

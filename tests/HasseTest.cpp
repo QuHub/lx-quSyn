@@ -42,7 +42,7 @@ void HasseTest::testBands() {
   Hasse hasse;
   hasse.initialize(3);
 
-  vector<unsigned long> expected({0});
+  vector<ulong> expected({0});
   assert_equal_vectors(expected, hasse.band()[0]);
 
   expected.assign({1,2,4});
@@ -60,12 +60,12 @@ void HasseTest::test_get() {
   Hasse hasse;
   hasse.initialize(3);
 
-  unsigned long buf[8], *p;
+  ulong buf[8], *p;
   p = buf;
   int n = hasse.get(p, 10);
   assert_equal(8, n);
 
-  vector<unsigned long> expected({10, 11, 12, 13, 14, 15, 16, 17});
-  vector<unsigned long> actual(p, p+8);
+  vector<ulong> expected({10, 11, 12, 13, 14, 15, 16, 17});
+  vector<ulong> actual(p, p+8);
   assert_equal_vectors(expected, actual);
 }

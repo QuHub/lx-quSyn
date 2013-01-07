@@ -11,7 +11,7 @@ public:
     m_bits = bits;
     m_terms = pow(2, bits);
     m_bands = bits + 1;
-    m_pbands = new vector<unsigned long>[m_bands]; // Delete only once at the end of the or on TotalReset();
+    m_pbands = new vector<ulong>[m_bands]; // Delete only once at the end of the or on TotalReset();
 
     // Allocate space for each bands
     for (int i = 0; i < m_terms; i++) {
@@ -19,7 +19,7 @@ public:
     }
   }
 
-  int get(unsigned long *p, int bias) {
+  int get(ulong *p, int bias) {
     int n = 0;
     for (int i = 0; i < m_bands; i++) {
       random_shuffle(m_pbands[i].begin(), m_pbands[i].end());
@@ -47,7 +47,7 @@ public:
     return m_bands;
   }
 
-  vector<unsigned long>*band() {
+  vector<ulong>*band() {
     return m_pbands;
   }
 
@@ -55,6 +55,6 @@ private:
   int m_bits;
   int m_terms;
   int m_bands;
-  vector<unsigned long> *m_pbands;
+  vector<ulong> *m_pbands;
 };
 

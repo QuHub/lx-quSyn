@@ -18,7 +18,7 @@
 #include "Synthesizer.h"
 #include "coveredsetpartition.h"
 
-void dump(unsigned long *p, int length)
+void dump(ulong *p, int length)
 {
   cout << "\nbegin memory dump: ******* at: " << p << "\n";
   for(int i=0; i<length; i++)
@@ -29,13 +29,13 @@ void dump(unsigned long *p, int length)
 
 CoveredSetPartition::CoveredSetPartition()
 {
-	m_pin = new unsigned long[m_function->m_nTerms];
-	m_pout = new unsigned long[m_function->m_nTerms];
+	m_pin = new ulong[m_function->m_nTerms];
+	m_pout = new ulong[m_function->m_nTerms];
 
 	// Build input vector with m_sets of bands and each band has a Hasse structure
 	//
-	unsigned long *buf = new unsigned long[m_max_terms];
-	unsigned long *p= buf;
+	ulong *buf = new ulong[m_max_terms];
+	ulong *p= buf;
 	for (int i=0; i<m_sets; i++) {
     p += m_hasse.get(p, i<<(m_function->m_nBits - CoveredSetPartition::partition_size()));
 	}
@@ -44,7 +44,7 @@ CoveredSetPartition::CoveredSetPartition()
   delete buf;
 }
 
-void CoveredSetPartition::copy_terms_in_function(unsigned long *p)
+void CoveredSetPartition::copy_terms_in_function(ulong *p)
 {
   int j=0, k;
   for (int i=0; i<m_max_terms; i++) {

@@ -48,8 +48,8 @@ void Synthesizer::process(Algorithm *algo) {
   m_num_gates = 0;
   m_num_bits = algo->num_bits();
 
-  unsigned long *pin = algo->inputs();
-  unsigned long *pout = algo->outputs();
+  ulong *pin = algo->inputs();
+  ulong *pout = algo->outputs();
 
   for (int i=0; i < algo->num_terms(); i++)
     process(*pin++, *pout++);
@@ -58,16 +58,16 @@ void Synthesizer::process(Algorithm *algo) {
   algo->num_gates(m_num_gates);
 }
 
-void Synthesizer::process(unsigned long in_term, unsigned long out_term) {
+void Synthesizer::process(ulong in_term, ulong out_term) {
   		out_term = propogate(out_term);
 
 		// Do we still have a difference?
 		// TODO: redo this thing with hash tables
-		unsigned long diff = in_term ^ out_term;
+		ulong diff = in_term ^ out_term;
 
 		if (diff > 0) {
 			// Flip the 0 bits first
-			unsigned long mask = 1;
+			ulong mask = 1;
 			for (int j = 0; j< m_num_bits; j++) {
 				if ( (diff & mask) && !(out_term & mask)) {
 					check_buffer_size();
@@ -94,12 +94,11 @@ void Synthesizer::process(unsigned long in_term, unsigned long out_term) {
 				mask <<= 1;
 			}
 		}
-
 }
 
-unsigned long Synthesizer::propogate(unsigned long term) {
-  unsigned long x;
-  for (unsigned long i=0; i<m_num_gates; i++) {
+ulong Synthesizer::propogate(ulong term) {
+  ulong x;
+  for (ulong i=0; i<m_num_gates; i++) {
     x = term & m_pcontrol[i];
     if (x == m_pcontrol[i])
       term ^= m_ptarget[i];
@@ -108,8 +107,8 @@ unsigned long Synthesizer::propogate(unsigned long term) {
 }
 
 long Synthesizer::cost() {
-  unsigned long * pncount = new unsigned long[m_num_bits];
-  memset(pncount, 0, m_num_bits * sizeof(unsigned long));
+  ulong * pncount = new ulong[m_num_bits];
+  memset(pncount, 0, m_num_bits * sizeof(ulong));
   for (int i=0; i<m_num_gates; i++)
     pncount[control_lines(m_pcontrol[i])]++;
 
@@ -117,11 +116,12 @@ long Synthesizer::cost() {
   for (int i=0; i<m_num_bits; i++)
     ncost += gate_cost(i) * pncount[i];
 
-		return ncost;
+  delete pncount;
+	return ncost;
 }
 
-long Synthesizer::control_lines(ulong long n) {
-  unsigned long count=0;
+long Synthesizer::control_lines(ulong  n) {
+  ulong count=0;
 
   for (int i=0; i<8; i++) {
     count += Helper::number_of_ones(n & 0xFF);

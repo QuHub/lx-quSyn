@@ -27,20 +27,20 @@ public:
   int m_nBits;
   int m_nRadix;
   int m_nTerms;
-  unsigned long *m_pIn;
-  unsigned long *m_pOut;
-  int has_input(unsigned long term);
+  ulong *m_pIn;
+  ulong *m_pOut;
+  int has_input(ulong term);
   void dump();
 
   Function();
-  unsigned long decimal(string str);
+  ulong decimal(string str);
   void load_file(string pfilename);
   virtual ~Function();
   int bits(int bits=0) {if(bits > 0) m_nBits = bits;    return m_nBits;}
   int radix(int radix=0) {if(radix>0) m_nRadix = radix; return m_nRadix;}
   int terms() {return m_nTerms;}
-  unsigned long *inputs() {return m_pIn;}
-  unsigned long *outputs() {return m_pOut;}
+  ulong *inputs() {return m_pIn;}
+  ulong *outputs() {return m_pOut;}
 };
 
 #endif // FUNCTION_H

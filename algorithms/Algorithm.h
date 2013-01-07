@@ -28,22 +28,22 @@ public:
   virtual ~Algorithm() {
     REL(m_pin), REL(m_pout), REL(m_pcontrol), REL(m_ptarget);
   }
-  unsigned long* inputs(){return m_pin;}
-  unsigned long* outputs(){return m_pout;}
+  ulong* inputs(){return m_pin;}
+  ulong* outputs(){return m_pout;}
   virtual int num_terms() {throw "subclass responsibility";}
   virtual int num_bits() {throw "subclass responsibility";}
   long cost(long cost=-1) {if(cost>0) m_cost = cost; return m_cost;}
   long num_gates(long gates=-1) {if(gates>0) m_num_gates = gates; return m_num_gates;}
-  unsigned long* target() { return ALLOC(m_pcontrol, MAX_NUM_GATES);  }
-  unsigned long* control() {return ALLOC(m_ptarget, MAX_NUM_GATES); }
+  ulong* target() { return ALLOC(m_pcontrol, MAX_NUM_GATES);  }
+  ulong* control() {return ALLOC(m_ptarget, MAX_NUM_GATES); }
   
 protected:
   long m_cost;
 	long m_num_gates;
-  unsigned long *m_pin;
-	unsigned long *m_pout;
-  unsigned long *m_ptarget;
-  unsigned long *m_pcontrol;
+  ulong *m_pin;
+	ulong *m_pout;
+  ulong *m_ptarget;
+  ulong *m_pcontrol;
 
 };
 

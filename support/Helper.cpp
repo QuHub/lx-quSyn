@@ -18,7 +18,7 @@ namespace Helper
 
 	/* returns the number of binary ones in 'number'
    */
-	int number_of_ones(unsigned long number)
+	int number_of_ones(ulong number)
 	{
 		int count=0;
 

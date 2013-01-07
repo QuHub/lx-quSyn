@@ -40,7 +40,7 @@ public:
   
   int partition_size() {return m_partition_size;}
   Function* function() {return m_function;}
-  void copy_terms_in_function(unsigned long *p);
+  void copy_terms_in_function(ulong *p);
 
 private:
 	static int m_sets;

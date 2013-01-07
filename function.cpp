@@ -37,7 +37,7 @@ Function::~Function() {
   if(m_pOut) delete m_pOut;
 }
 
-int Function::has_input(unsigned long term) {
+int Function::has_input(ulong term) {
   for(int i=0; i<m_nTerms; i++)
     if(m_pIn[i] == term) return i;
 
@@ -59,8 +59,8 @@ void Function::load_file(string pfilename) {
   vector<string> strs;
   boost::split(strs, specification, boost::is_any_of("\n"));
 
-  m_pIn = new unsigned long[strs.size()];
-  m_pOut = new unsigned long[strs.size()];
+  m_pIn = new ulong[strs.size()];
+  m_pOut = new ulong[strs.size()];
 
   m_nTerms = 0;
   for (int i = 0; i < strs.size(); i++) {
@@ -75,8 +75,8 @@ void Function::load_file(string pfilename) {
   }
 }
 
-unsigned long Function::decimal(string str) {
-  unsigned long result=0;
+ulong Function::decimal(string str) {
+  ulong result=0;
 
   for(int i=0; i<str.size(); i++) {
     result += str[i] - '0';

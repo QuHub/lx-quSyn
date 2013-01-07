@@ -31,8 +31,8 @@ void FunctionTest::testMethod() {
   assert_equal(2, function.bits());
   assert_equal(3, function.radix());
   assert_equal(27, function.terms());
-  unsigned long *inputs = function.inputs();
-  unsigned long *outputs= function.outputs();
+  ulong *inputs = function.inputs();
+  ulong *outputs= function.outputs();
 
   assert_equal(0UL, inputs[0]);
   assert_equal(26UL, inputs[26]);

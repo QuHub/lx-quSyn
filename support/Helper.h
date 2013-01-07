@@ -10,7 +10,7 @@
 
 namespace Helper
 {
-	int number_of_ones(unsigned long number);
+	int number_of_ones(ulong number);
 }
 
 
