@@ -20,6 +20,9 @@ class SynthesizerMock : public Synthesizer {
   }
   ulong propogate(ulong term) {return Synthesizer::propogate(term);}
   ulong cost() {return Synthesizer::cost();}
+  void process(ulong in_term, ulong out_term) {Synthesizer::process(in_term, out_term);}
+  ulong gates(){return m_num_gates;}
+
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION(SynthesizerTest);
@@ -67,5 +70,21 @@ void SynthesizerTest::test_control_lines() {
 }
 
 void SynthesizerTest::test_process() {
+  SynthesizerMock syn;
+  ulong control[10] = {};
+  ulong target[10] =  {};
+  syn.stub(control, target, 0, 4);
+  syn.process(0b0000, 0b1101);
+  assert_equal(3UL, syn.gates());
 
+  ulong control2[10] = {0b1100, 0b1001, 0b0101};
+  ulong target2[10] =  {0b0001, 0b0100, 0b1000};
+  syn.stub(control2, target2, 3, 4);
+  syn.process(0b0000, 0b1101);
+  assert_equal(5UL, syn.gates());
+  assert_equal(0b1000UL, control2[3]);
+  assert_equal(0b0100UL, target2[3]);
+
+  assert_equal(0b0000UL, control2[4]);
+  assert_equal(0b1000UL, target2[4]);
 }
