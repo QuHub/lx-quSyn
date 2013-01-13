@@ -19,10 +19,15 @@ public:
     }
   }
 
+  static void seed() {
+    long seed = Rand::for_random_shuffle(100000);
+    srand(seed);
+   }
+
   int get(ulong *p, int bias) {
     int n = 0;
     for (int i = 0; i < m_bands; i++) {
-      random_shuffle(m_pbands[i].begin(), m_pbands[i].end(), Rand::for_random_shuffle);
+      random_shuffle(m_pbands[i].begin(), m_pbands[i].end());
       for (int j = 0; j < m_pbands[i].size(); j++)
         *p++ = m_pbands[i][j] + bias;
 
@@ -32,7 +37,7 @@ public:
   }
 
   void release() {
-    delete m_pbands;
+    delete []m_pbands;
   }
 
   int bits() {

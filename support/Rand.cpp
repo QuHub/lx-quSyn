@@ -1,4 +1,7 @@
 #include "Rand.h"
+#include <tr1/random>
+
+using namespace std::tr1;
 
 namespace Rand {
    #define BUF_SIZE (100*1024)
@@ -32,7 +35,12 @@ namespace Rand {
   }
 
   ptrdiff_t for_random_shuffle(ptrdiff_t i) {
+    //std::tr1::mt19937 eng;
+    //std::tr1::uniform_int<int> unif(0, i);
+    //return unif(eng);
+
     if((index % BUF_SIZE) == 0) fill_buffer();
     return (ptrdiff_t)((i-1)*buffer[index++]);
+
   }
 }

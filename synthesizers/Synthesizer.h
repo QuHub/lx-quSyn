@@ -38,7 +38,7 @@ protected:
   void check_buffer_size() {
     if(m_num_gates > MAX_NUM_GATES)
       throw "Buffer exceeded capacity";
-  }
+  } 
   ulong propogate(ulong term);
   inline long gate_cost(int i) {
     return max(1, (int)pow(2.0, 1+i) - 3);

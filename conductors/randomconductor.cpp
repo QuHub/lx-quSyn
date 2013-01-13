@@ -40,7 +40,7 @@ void RandomConductor::synthesize()
 
   for (int j=0; j<N_RUNS; j++) {
     cout << "Run: " << j << "\r";
-
+    Hasse::seed();
     for (int i=0; i<N_BATCH; i++) {
       pAlgo[i] = new CoveredSetPartition();
       pAlgo[i]->synthesize();
@@ -60,6 +60,7 @@ void RandomConductor::synthesize()
     }
   }
 
+  cout << "Waiting for queue\n";
 	WaitForQueue();
 
   // PrintResult(0);

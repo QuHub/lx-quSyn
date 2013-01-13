@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="84">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="argvparser-20060124"
+                   displayName="argvparser-20060124"
+                   projectFiles="true">
+      <itemPath>argvparser-20060124/Makefile</itemPath>
+      <itemPath>argvparser-20060124/argvparser.cpp</itemPath>
+      <itemPath>argvparser-20060124/argvparser.h</itemPath>
+      <itemPath>argvparser-20060124/tests.cpp</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
@@ -39,6 +47,8 @@
         <itemPath>support/Rand.h</itemPath>
         <itemPath>support/Thread.cpp</itemPath>
         <itemPath>support/Thread.h</itemPath>
+        <itemPath>option.cpp</itemPath>
+        <itemPath>option.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="Synthesizers" projectFiles="true">
         <itemPath>synthesizers/Synthesizer.cpp</itemPath>
@@ -90,10 +100,11 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>option.cpp</itemPath>
-    <itemPath>option.h</itemPath>
     <itemPath>tests/test_helper</itemPath>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>argvparser-20060124</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -115,6 +126,7 @@
             <pElem>.</pElem>
             <pElem>support</pElem>
             <pElem>synthesizers</pElem>
+            <pElem>argvparser-20060124</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -126,6 +138,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="argvparser-20060124/Makefile" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="argvparser-20060124/tests.cpp" ex="true" tool="1" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -225,11 +241,12 @@
           <architecture>2</architecture>
           <standard>8</standard>
           <incDir>
-            <pElem>.</pElem>
             <pElem>conductors</pElem>
             <pElem>algorithms</pElem>
+            <pElem>.</pElem>
             <pElem>support</pElem>
             <pElem>synthesizers</pElem>
+            <pElem>argvparser-20060124</pElem>
           </incDir>
         </ccTool>
         <fortranCompilerTool>
@@ -262,12 +279,14 @@
         <ccTool>
           <developmentMode>6</developmentMode>
           <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
           <incDir>
             <pElem>conductors</pElem>
             <pElem>algorithms</pElem>
             <pElem>.</pElem>
             <pElem>support</pElem>
             <pElem>synthesizers</pElem>
+            <pElem>argvparser-20060124</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -279,6 +298,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="argvparser-20060124/Makefile" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="argvparser-20060124/tests.cpp" ex="true" tool="1" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
