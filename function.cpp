@@ -55,16 +55,14 @@ void Function::load_file(string pfilename) {
   m_fileName = pfilename;
   m_nBits = config["inputs"]["variables"].as<int>();
   m_nRadix = config["inputs"]["radix"].as<int>();
-  string specification = config["specification"].as<string > ();
-  vector<string> strs;
-  boost::split(strs, specification, boost::is_any_of("\n"));
+  vector<string> specification = config["specification"].as<vector<string> > ();
 
-  m_pIn = new ulong[strs.size()];
-  m_pOut = new ulong[strs.size()];
+  m_pIn = new ulong[specification.size()];
+  m_pOut = new ulong[specification.size()];
 
   m_nTerms = 0;
-  for (int i = 0; i < strs.size(); i++) {
-    string value = strs[i];
+  for (int i = 0; i < specification.size(); i++) {
+    string value = specification[i];
     if (value == "") continue;
 
     vector<string> in_out;
@@ -73,6 +71,7 @@ void Function::load_file(string pfilename) {
     m_pOut[m_nTerms] = decimal(in_out[1].c_str());
     m_nTerms++;
   }
+
 }
 
 ulong Function::decimal(string str) {

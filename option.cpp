@@ -28,14 +28,20 @@ void Option::init(int argc, char** argv)
     exit(1);
   }
 
-  cout << "Filename: " << Get("input-file") << std::endl;
-  cout << "PatitionSize: " << Get("partition-size") <<std::endl;
+  cout << "Filename: " << Get("input-file", "") << std::endl;
+  cout << "PatitionSize: " << Get("partition-size", 0) <<std::endl;
   cout << std::endl;
 }
 
-string Option::Get(const char* option)
+string Option::Get(const char* option, const char* _default)
 {
   if(m_parser.foundOption(option))
     return m_parser.optionValue(option);
-	return NULL;
+	return _default;
+}
+
+int Option::Get(const char* option, int _default)
+{
+  string value = Get(option, "");
+  return value.empty() ? _default : atoi(value.c_str());
 }

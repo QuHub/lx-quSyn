@@ -28,8 +28,9 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./functions/hwb9.xqs</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./functions/hwb4_12.pla.xqs</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" --input-file=./functions/hwb9.xqs</runcommand>
+        <runcommand>"${OUTPUT_PATH}" --input-file=./functions/hwb4_12.pla.xqs</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

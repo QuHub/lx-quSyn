@@ -27,8 +27,8 @@ void add_cli_options() {
 int main(int argc, char** argv) {
   Option::init(argc, argv);
   Function function;
-  function.load_file(Option::Get("input-file"));
-  CoveredSetPartition::initialize(&function, atoi(Option::Get("partition-size").c_str()));
+  function.load_file(Option::Get("input-file", ""));
+  CoveredSetPartition::initialize(&function, Option::Get("partition-size", 0));
   RandomConductor algo(&function);
   algo.synthesize();
   CoveredSetPartition::release();

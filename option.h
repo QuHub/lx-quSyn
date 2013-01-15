@@ -20,7 +20,9 @@ class Option
 public:
   static string m_fileName;
   static void init(int argc, char** argv);
-	static string Get(const char* option);
+	static string Get(const char* option, const char* _default="");
+  static int Get(const char* option, int _default=0);
+
 private:
 	static void Parse();
 	static int m_argc;
