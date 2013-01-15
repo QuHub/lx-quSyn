@@ -1,0 +1,13 @@
+---
+signature:
+  function: f2
+inputs:
+  radix: 2
+  variables: 4
+outputs:
+  radix: 2
+  variables: 4
+specification:
+- -010 1
+- 0-10 1
+- 001- 1

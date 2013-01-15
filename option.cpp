@@ -27,6 +27,10 @@ void Option::init(int argc, char** argv)
     cout << m_parser.parseErrorDescription(results);
     exit(1);
   }
+
+  cout << "Filename: " << Get("input-file") << std::endl;
+  cout << "PatitionSize: " << Get("partition-size") <<std::endl;
+  cout << std::endl;
 }
 
 string Option::Get(const char* option)

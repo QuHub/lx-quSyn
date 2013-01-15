@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+Functions = %w(hwb9)
+
+def run(function, index)
+  cmd = "dist/Release_2/GNU-Linux-x86/qsyn --input-file=functions/#{function}.xqs --partition-size=#{index} | tee results/#{function}.txt"
+  p cmd
+  %x(#{cmd})
+end
+
+Functions.each do |function|
+  (0..8).each do |index|
+    run function, index
+  end
+end
