@@ -16,4 +16,4 @@
 
 using namespace std;
 
-#define MAX_NUM_GATES 10*1024
+#define MAX_NUM_GATES 1024*1024

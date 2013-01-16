@@ -17,7 +17,7 @@ class Convert
       when /Function:\s*(.*)/i then self.function = $1.strip
       when /^\.i\s+(\d+)/ then self.number_of_inputs  = $1.to_i
       when /^\.o\s+(\d+)/ then self.number_of_outputs = $1.to_i
-      when /^([\-\d]+\s+[\-\d]+)/  then self.specification << $1
+      when /^([\-\d]+\s+[\-\d]+)/  then self.specification << $1.sub(/\t/, ' ')
       end
     end
   end

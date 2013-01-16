@@ -1,0 +1,45 @@
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 0
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:18993
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 1
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:20891
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 2
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:17382
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 3
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:15593
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 4
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:15054
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 5
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:15178
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 6
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:13614
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 7
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:13614
+Filename: ./functions/mlp4_184.pla.xqs
+PatitionSize: 8
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:15385

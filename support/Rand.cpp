@@ -38,9 +38,7 @@ namespace Rand {
     //std::tr1::mt19937 eng;
     //std::tr1::uniform_int<int> unif(0, i);
     //return unif(eng);
-
     if((index % BUF_SIZE) == 0) fill_buffer();
     return (ptrdiff_t)((i-1)*buffer[index++]);
-
   }
 }

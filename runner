@@ -1,15 +1,24 @@
 #!/usr/bin/env ruby
 
-Functions = %w(hwb9)
+require 'yaml'
+
+Functions = Dir['functions/*.xqs']
 
 def run(function, index)
-  cmd = "dist/Release_2/GNU-Linux-x86/qsyn --input-file=functions/#{function}.xqs --partition-size=#{index} | tee results/#{function}.txt"
+  cmd = "time dist/Release_2/GNU-Linux-x86/qsyn --input-file=#{function} --partition-size=#{index}"
   p cmd
-  %x(#{cmd})
+  result = %x(#{cmd})
+  puts result
+  File.open('results/%s.txt' % File.basename(function), 'a') do |f| 
+    f.puts "\n" * 5
+    f.puts DateTime.now
+    f.puts result
+  end
 end
 
-Functions.each do |function|
-  (0..8).each do |index|
-    run function, index
+Functions.each do |file|
+  yaml = YAML.load_file(file)
+  (0..yaml['inputs']['variables'].to_i).each do |index|
+    run file, index
   end
 end

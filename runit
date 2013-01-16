@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+for i in {6..15}
+do
+  for file in ./functions/*.xqs
+  do
+    bits=`cat $file | grep -m1 variables | cut -d \: -f 2`
+
+    echo Function: $file, Number of bits: $bits
+    echo -----
+    [ $bits -ne $i ] && continue
+
+    for index in $(seq 0 $bits)
+    do
+      echo $file, $index
+      filename=`echo $file | cut -d \/ -f 3`
+      echo "time dist/Release_2/GNU-Linux-x86/qsyn --input-file=$file --partition-size=$index | tee -a results/$filename.txt "
+      time dist/Release_2/GNU-Linux-x86/qsyn --input-file=$file --partition-size=$index | tee -a results/$filename.txt 
+    done
+  done
+done

@@ -1,0 +1,6 @@
+Filename: ./functions/dk27_146.pla.xqs
+PatitionSize: 0
+
+Run: 0Fetching random numbers: 102400
+Quantum Cost:13
+Run: 1Run: 2Run: 3Run: 4
