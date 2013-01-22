@@ -15,7 +15,9 @@ class SynthesizerTest : public CPPUNIT_NS::TestFixture {
 
   CPPUNIT_TEST(test_propogate);
   CPPUNIT_TEST(test_cost);
+  CPPUNIT_TEST(test_lnnqc);
   CPPUNIT_TEST(test_control_lines);
+  CPPUNIT_TEST(test_lnnqc_mct);
   CPPUNIT_TEST(test_process);
 
   CPPUNIT_TEST_SUITE_END();
@@ -29,8 +31,10 @@ public:
 private:
   void test_propogate();
   void test_cost();
+  void test_lnnqc_mct();
+  void test_lnnqc();
   void test_control_lines();
   void test_process();
-};   
+};
 #endif	/* SYNTHESIZERTEST_H */
 

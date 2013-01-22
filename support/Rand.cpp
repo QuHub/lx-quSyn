@@ -4,7 +4,7 @@
 using namespace std::tr1;
 
 namespace Rand {
-   #define BUF_SIZE (100*1024)
+   #define BUF_SIZE (10)
   float buffer[BUF_SIZE];
   long index=0;
   int64 count=0;

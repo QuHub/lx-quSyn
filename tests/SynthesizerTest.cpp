@@ -20,6 +20,8 @@ class SynthesizerMock : public Synthesizer {
   }
   ulong propogate(ulong term) {return Synthesizer::propogate(term);}
   ulong cost() {return Synthesizer::cost();}
+  ulong lnnqc_mct(int n) {return Synthesizer::lnnqc_mct(n);}
+  ulong lnnqc() {return Synthesizer::lnnqc();}
   void process(ulong in_term, ulong out_term) {Synthesizer::process(in_term, out_term);}
   ulong gates(){return m_num_gates;}
 
@@ -63,6 +65,24 @@ void SynthesizerTest::test_cost() {
   syn.stub(control2, NULL, 3, 5);
   assert_equal(31UL, syn.cost());
 
+}
+
+void SynthesizerTest::test_lnnqc() {
+
+
+}
+
+
+void SynthesizerTest::test_lnnqc_mct() {
+  SynthesizerMock syn;
+
+  assert_equal(9UL, syn.lnnqc_mct(3));
+  assert_equal(31UL, syn.lnnqc_mct(4));
+  assert_equal(83UL, syn.lnnqc_mct(5));
+  assert_equal(193UL, syn.lnnqc_mct(6));
+  assert_equal(413UL, syn.lnnqc_mct(7));
+  assert_equal(843UL, syn.lnnqc_mct(8));
+  assert_equal(1679UL, syn.lnnqc_mct(9));
 }
 
 void SynthesizerTest::test_control_lines() {

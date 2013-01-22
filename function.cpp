@@ -33,8 +33,8 @@ Function::Function() {
 
 
 Function::~Function() {
-  if(m_pIn) delete m_pIn;
-  if(m_pOut) delete m_pOut;
+  if(m_pIn) delete[] m_pIn;
+  if(m_pOut) delete[] m_pOut;
 }
 
 int Function::has_input(ulong term) {

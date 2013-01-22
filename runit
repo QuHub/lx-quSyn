@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-for i in {6..15}
+for i in {9..15}
 do
   for file in ./functions/*.xqs
   do
@@ -13,7 +13,7 @@ do
     do
       echo $file, $index
       filename=`echo $file | cut -d \/ -f 3`
-      echo "time dist/Release_2/GNU-Linux-x86/qsyn --input-file=$file --partition-size=$index | tee -a results/$filename.txt "
+      echo "time dist/Debug/GNU-Linux-x86/qsyn --input-file=$file --partition-size=$index | tee -a results/$filename.txt "
       time dist/Release_2/GNU-Linux-x86/qsyn --input-file=$file --partition-size=$index | tee -a results/$filename.txt 
     done
   done

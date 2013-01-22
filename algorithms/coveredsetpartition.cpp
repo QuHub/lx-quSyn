@@ -27,6 +27,7 @@ void CoveredSetPartition::initialize(Function *pfunction, int partition_size)
 	m_sets = pow(2, m_partition_size);
   m_max_terms = pow(2, pfunction->m_nBits);
   m_hasse.initialize(pfunction->m_nBits - m_partition_size);
+  Hasse::seed();
 }
 
 void CoveredSetPartition::release() {
@@ -49,7 +50,7 @@ CoveredSetPartition::CoveredSetPartition()
 	}
 
   copy_terms_in_function(buf);
-  delete buf;
+  delete[] buf;
 }
 
 CoveredSetPartition::~CoveredSetPartition()

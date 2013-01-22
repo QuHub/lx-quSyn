@@ -65,7 +65,7 @@ void Synthesizer::process(ulong in_term, ulong out_term) {
 		// TODO: redo this thing with hash tables
 		ulong diff = in_term ^ out_term;
 
-		if (diff > 0) {
+		if (diff > 0UL) {
 			// Flip the 0 bits first
 			ulong mask = 1;
 			for (int j = 0; j< m_num_bits; j++) {
@@ -106,6 +106,22 @@ ulong Synthesizer::propogate(ulong term) {
   return term;
 }
 
+long Synthesizer::lnnqc () {
+  ulong * pncount = new ulong[m_num_bits];
+  memset(pncount, 0, m_num_bits * sizeof(ulong));
+  for (int i=0; i<m_num_gates; i++)
+    pncount[control_lines(m_pcontrol[i])]++;
+
+  long ncost=0;
+
+
+  delete[] pncount;
+  return ncost;
+
+}
+
+
+
 long Synthesizer::cost() {
   ulong * pncount = new ulong[m_num_bits];
   memset(pncount, 0, m_num_bits * sizeof(ulong));
@@ -116,7 +132,7 @@ long Synthesizer::cost() {
   for (int i=0; i<m_num_bits; i++)
     ncost += gate_cost(i) * pncount[i];
 
-  delete pncount;
+  delete[] pncount;
 	return ncost;
 }
 

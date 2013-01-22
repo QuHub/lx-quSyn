@@ -21,7 +21,7 @@ Conductor::Conductor(const Conductor& orig) {
 
 Conductor::~Conductor() {
 
-  delete []m_Synthesizers;
+  delete[] m_Synthesizers;
 }
 
 void Conductor::WaitForQueue() {
