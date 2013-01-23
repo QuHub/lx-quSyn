@@ -22,6 +22,7 @@ class SynthesizerMock : public Synthesizer {
   ulong cost() {return Synthesizer::cost();}
   ulong lnnqc_mct(int n) {return Synthesizer::lnnqc_mct(n);}
   ulong lnnqc() {return Synthesizer::lnnqc();}
+  ulong gate_lnnqc(long c, long t) {return Synthesizer::gate_lnnqc(c,t);}
   void process(ulong in_term, ulong out_term) {Synthesizer::process(in_term, out_term);}
   ulong gates(){return m_num_gates;}
 
@@ -68,14 +69,38 @@ void SynthesizerTest::test_cost() {
 }
 
 void SynthesizerTest::test_lnnqc() {
+  SynthesizerMock syn;
+  {
+    ulong control[] = {0b1000, 0b1001, 0b0101};
+    ulong target[] =  {0b0001, 0b0100, 0b1000};
+    syn.stub(control, target, 3, 4);
+    assert_equal(35UL, syn.lnnqc());
+  }
 
-
+  {
+    ulong control[] = {0b11100, 0b01001, 0b10101};
+    ulong target[] =  {0b00001, 0b00010, 0b01000};
+    syn.stub(control, target, 3, 5);
+    assert_equal(83UL, syn.lnnqc());
+  }
 }
 
+
+void SynthesizerTest::test_gate_lnnqc() {
+  SynthesizerMock syn;
+  syn.stub(NULL, NULL, 0, 10);
+
+  assert_equal(39UL, syn.gate_lnnqc(0b101010, 0b000001));
+  assert_equal(17UL, syn.gate_lnnqc(0b100000, 0b000001));
+  assert_equal(13UL, syn.gate_lnnqc(0b1100, 0b0001));
+  assert_equal(9UL, syn.gate_lnnqc(0b1000, 0b0001));
+}
 
 void SynthesizerTest::test_lnnqc_mct() {
   SynthesizerMock syn;
 
+  assert_equal(1UL, syn.lnnqc_mct(1));
+  assert_equal(1UL, syn.lnnqc_mct(2));
   assert_equal(9UL, syn.lnnqc_mct(3));
   assert_equal(31UL, syn.lnnqc_mct(4));
   assert_equal(83UL, syn.lnnqc_mct(5));

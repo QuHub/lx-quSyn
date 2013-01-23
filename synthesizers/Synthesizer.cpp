@@ -106,21 +106,63 @@ ulong Synthesizer::propogate(ulong term) {
   return term;
 }
 
-long Synthesizer::lnnqc () {
-  ulong * pncount = new ulong[m_num_bits];
-  memset(pncount, 0, m_num_bits * sizeof(ulong));
-  for (int i=0; i<m_num_gates; i++)
-    pncount[control_lines(m_pcontrol[i])]++;
 
-  long ncost=0;
+  long Synthesizer::cost_of_swap_gates(int num_bits) {
+    if(num_bits < 4) return 0;
 
+    long last_stage = 2;
+    long cost = 2;
+    for(int k=3; k <= num_bits - 2; k++) {
+      last_stage = 2 * last_stage + 2*(k-1);
+      cost += last_stage;
+    }
 
-  delete[] pncount;
-  return ncost;
+    return 2*cost;
+  }
 
+  // cost of mct without gaps between qbits
+long Synthesizer::lnnqc_mct(int num_bits) {
+  if(num_bits < 3) return 1;
+
+  long cost_of_cv_gates = std::pow(2.0, num_bits - 1) -1;    // Equation 1
+  long cost_of_cnot_gates = std::pow(2.0, num_bits - 1) -2;  // Equation 2
+
+  long cost_of_reflection_gates = 0;
+  for (int k=2; k<= num_bits - 2; k++)
+    cost_of_reflection_gates += k*k - 1;
+  cost_of_reflection_gates *= 2;
+
+  return (4*(num_bits - 2) + cost_of_cv_gates + cost_of_cnot_gates
+          + cost_of_swap_gates(num_bits) + cost_of_reflection_gates);
 }
 
+// This is the cost of gate with gaps between qbits.
+long Synthesizer::gate_lnnqc(ulong control, ulong target) {
+  ulong combined_bits = control | target;
 
+  // Find min and max position of bits used
+  long min=8*sizeof(ulong), max=0, num_of_used_bits=0;
+  for(long i=0; i< m_num_bits; i++) {
+    if( ((1UL<<i) & combined_bits) > 0) {
+      num_of_used_bits ++;
+      min = std::min(min, i);
+      max = std::max(max, i);
+    }
+  }
+
+  long num_gaps = max - min - num_of_used_bits + 1;
+  return num_gaps * 4 + lnnqc_mct(control_lines(control) + 1);
+}
+
+long Synthesizer::lnnqc () {
+  long ncost=0;
+
+  for (int i=0; i<m_num_gates; i++) {
+    ncost += gate_lnnqc(m_pcontrol[i],m_ptarget[i]);
+  }
+
+	return ncost;
+}
 
 long Synthesizer::cost() {
   ulong * pncount = new ulong[m_num_bits];
