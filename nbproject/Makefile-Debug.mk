@@ -74,7 +74,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs yaml-cpp` -lboost_filesystem -lboost_program_options -lcppunit   
+LDLIBSOPTIONS=`pkg-config --libs yaml-cpp` -lboost_filesystem -lboost_program_options -lcppunit  -lrt  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -84,72 +84,72 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
-${OBJECTDIR}/synthesizers/Synthesizer.o: nbproject/Makefile-${CND_CONF}.mk synthesizers/Synthesizer.cpp 
+${OBJECTDIR}/synthesizers/Synthesizer.o: synthesizers/Synthesizer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/synthesizers
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/synthesizers/Synthesizer.o synthesizers/Synthesizer.cpp
 
-${OBJECTDIR}/common.o: nbproject/Makefile-${CND_CONF}.mk common.cpp 
+${OBJECTDIR}/common.o: common.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/common.o common.cpp
 
-${OBJECTDIR}/function.o: nbproject/Makefile-${CND_CONF}.mk function.cpp 
+${OBJECTDIR}/function.o: function.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/function.o function.cpp
 
-${OBJECTDIR}/conductors/randomconductor.o: nbproject/Makefile-${CND_CONF}.mk conductors/randomconductor.cpp 
+${OBJECTDIR}/conductors/randomconductor.o: conductors/randomconductor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/conductors
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/randomconductor.o conductors/randomconductor.cpp
 
-${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
+${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
-${OBJECTDIR}/option.o: nbproject/Makefile-${CND_CONF}.mk option.cpp 
+${OBJECTDIR}/option.o: option.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/option.o option.cpp
 
-${OBJECTDIR}/conductors/conductor.o: nbproject/Makefile-${CND_CONF}.mk conductors/conductor.cpp 
+${OBJECTDIR}/conductors/conductor.o: conductors/conductor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/conductors
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/conductors/conductor.o conductors/conductor.cpp
 
-${OBJECTDIR}/support/Queue.o: nbproject/Makefile-${CND_CONF}.mk support/Queue.cpp 
+${OBJECTDIR}/support/Queue.o: support/Queue.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Queue.o support/Queue.cpp
 
-${OBJECTDIR}/argvparser-20060124/argvparser.o: nbproject/Makefile-${CND_CONF}.mk argvparser-20060124/argvparser.cpp 
+${OBJECTDIR}/argvparser-20060124/argvparser.o: argvparser-20060124/argvparser.cpp 
 	${MKDIR} -p ${OBJECTDIR}/argvparser-20060124
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/argvparser-20060124/argvparser.o argvparser-20060124/argvparser.cpp
 
-${OBJECTDIR}/support/Rand.o: nbproject/Makefile-${CND_CONF}.mk support/Rand.cpp 
+${OBJECTDIR}/support/Rand.o: support/Rand.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Rand.o support/Rand.cpp
 
-${OBJECTDIR}/support/QRBG.o: nbproject/Makefile-${CND_CONF}.mk support/QRBG.cpp 
+${OBJECTDIR}/support/QRBG.o: support/QRBG.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/QRBG.o support/QRBG.cpp
 
-${OBJECTDIR}/support/Thread.o: nbproject/Makefile-${CND_CONF}.mk support/Thread.cpp 
+${OBJECTDIR}/support/Thread.o: support/Thread.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Thread.o support/Thread.cpp
 
-${OBJECTDIR}/algorithms/coveredsetpartition.o: nbproject/Makefile-${CND_CONF}.mk algorithms/coveredsetpartition.cpp 
+${OBJECTDIR}/algorithms/coveredsetpartition.o: algorithms/coveredsetpartition.cpp 
 	${MKDIR} -p ${OBJECTDIR}/algorithms
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/algorithms/coveredsetpartition.o algorithms/coveredsetpartition.cpp
 
-${OBJECTDIR}/support/Helper.o: nbproject/Makefile-${CND_CONF}.mk support/Helper.cpp 
+${OBJECTDIR}/support/Helper.o: support/Helper.cpp 
 	${MKDIR} -p ${OBJECTDIR}/support
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iconductors -Ialgorithms -I. -Isupport -Isynthesizers -Iargvparser-20060124 `pkg-config --cflags yaml-cpp` -std=c++11   -MMD -MP -MF $@.d -o ${OBJECTDIR}/support/Helper.o support/Helper.cpp

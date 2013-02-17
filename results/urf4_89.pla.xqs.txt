@@ -1,0 +1,36 @@
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 0
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 1
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 2
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 3
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 4
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 5
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 6
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 7
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 8
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 9
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 10
+
+Filename: ./functions/urf4_89.pla.xqs
+PatitionSize: 11
+

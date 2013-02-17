@@ -18,6 +18,7 @@
 #include "../function.h"
 #include "coveredsetpartition.h"
 #include "conductor.h"
+#include "StopWatch.h"
 
 #ifndef RANDOMCONDUCTOR_H
 #define RANDOMCONDUCTOR_H
@@ -25,11 +26,14 @@
 class RandomConductor : public Conductor
 {
   Function *m_function;
+  StopWatch m_timer;
 
 public:
 RandomConductor();
 RandomConductor(Function *);
+void save_best_cost(Algorithm *);
 void synthesize();
+void print_results();
 virtual ~RandomConductor();
 };
 

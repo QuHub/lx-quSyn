@@ -22,6 +22,8 @@ public:
 	void WaitForQueue();
 
 protected:
+  long m_best_cost;
+  long m_best_lnnqc;
 
 };
 

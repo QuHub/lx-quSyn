@@ -55,6 +55,8 @@ void Synthesizer::process(Algorithm *algo) {
     process(*pin++, *pout++);
 
   algo->cost(cost());
+  algo->lnnqc(lnnqc());
+  
   algo->num_gates(m_num_gates);
 }
 
@@ -165,8 +167,8 @@ long Synthesizer::lnnqc () {
 }
 
 long Synthesizer::cost() {
-  ulong * pncount = new ulong[m_num_bits];
-  memset(pncount, 0, m_num_bits * sizeof(ulong));
+  ulong pncount[64];
+  memset(pncount, 0, sizeof(pncount));
   for (int i=0; i<m_num_gates; i++)
     pncount[control_lines(m_pcontrol[i])]++;
 
@@ -174,7 +176,6 @@ long Synthesizer::cost() {
   for (int i=0; i<m_num_bits; i++)
     ncost += gate_cost(i) * pncount[i];
 
-  delete[] pncount;
 	return ncost;
 }
 

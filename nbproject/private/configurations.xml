@@ -31,8 +31,9 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./functions/hwb4_12.pla.xqs</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./functions/0410184_85.pla.xqs</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./functions/hwb9_65.pla.xqs</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" --input-file=./functions/dk27_146.pla.xqs --partition-size=3 </runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" --input-file=./functions/hwb9_65.pla.xqs</runcommand>
+        <runcommand>"${OUTPUT_PATH}" --input-file=./functions/dk27_146.pla.xqs --partition-size=3</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

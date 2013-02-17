@@ -51,6 +51,11 @@ public:
     if (cost > 0) m_cost = cost;
     return m_cost;
   }
+  
+  long lnnqc(long cost=-1) {
+    if (cost > 0) m_lnnqc = cost;
+    return m_lnnqc;
+  }
 
   long num_gates(long gates = -1) {
     if (gates > 0) m_num_gates = gates;
@@ -67,6 +72,7 @@ public:
 
 protected:
   long m_cost;
+  long m_lnnqc;
   long m_num_gates;
   ulong *m_pin;
   ulong *m_pout;
