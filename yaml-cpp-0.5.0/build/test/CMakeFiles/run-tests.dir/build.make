@@ -49,55 +49,9 @@ include test/CMakeFiles/run-tests.dir/progress.make
 # Include the compile flags for this target's objects.
 include test/CMakeFiles/run-tests.dir/flags.make
 
-test/CMakeFiles/run-tests.dir/spectests.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
-test/CMakeFiles/run-tests.dir/spectests.cpp.o: ../test/spectests.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object test/CMakeFiles/run-tests.dir/spectests.cpp.o"
-	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/run-tests.dir/spectests.cpp.o -c /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/spectests.cpp
-
-test/CMakeFiles/run-tests.dir/spectests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run-tests.dir/spectests.cpp.i"
-	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/spectests.cpp > CMakeFiles/run-tests.dir/spectests.cpp.i
-
-test/CMakeFiles/run-tests.dir/spectests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run-tests.dir/spectests.cpp.s"
-	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/spectests.cpp -o CMakeFiles/run-tests.dir/spectests.cpp.s
-
-test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires:
-.PHONY : test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires
-
-test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides: test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires
-	$(MAKE) -f test/CMakeFiles/run-tests.dir/build.make test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides.build
-.PHONY : test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides
-
-test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides.build: test/CMakeFiles/run-tests.dir/spectests.cpp.o
-
-test/CMakeFiles/run-tests.dir/tests.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
-test/CMakeFiles/run-tests.dir/tests.cpp.o: ../test/tests.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object test/CMakeFiles/run-tests.dir/tests.cpp.o"
-	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/run-tests.dir/tests.cpp.o -c /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/tests.cpp
-
-test/CMakeFiles/run-tests.dir/tests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run-tests.dir/tests.cpp.i"
-	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/tests.cpp > CMakeFiles/run-tests.dir/tests.cpp.i
-
-test/CMakeFiles/run-tests.dir/tests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run-tests.dir/tests.cpp.s"
-	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/tests.cpp -o CMakeFiles/run-tests.dir/tests.cpp.s
-
-test/CMakeFiles/run-tests.dir/tests.cpp.o.requires:
-.PHONY : test/CMakeFiles/run-tests.dir/tests.cpp.o.requires
-
-test/CMakeFiles/run-tests.dir/tests.cpp.o.provides: test/CMakeFiles/run-tests.dir/tests.cpp.o.requires
-	$(MAKE) -f test/CMakeFiles/run-tests.dir/build.make test/CMakeFiles/run-tests.dir/tests.cpp.o.provides.build
-.PHONY : test/CMakeFiles/run-tests.dir/tests.cpp.o.provides
-
-test/CMakeFiles/run-tests.dir/tests.cpp.o.provides.build: test/CMakeFiles/run-tests.dir/tests.cpp.o
-
 test/CMakeFiles/run-tests.dir/emittertests.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
 test/CMakeFiles/run-tests.dir/emittertests.cpp.o: ../test/emittertests.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object test/CMakeFiles/run-tests.dir/emittertests.cpp.o"
 	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/run-tests.dir/emittertests.cpp.o -c /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/emittertests.cpp
 
@@ -118,9 +72,32 @@ test/CMakeFiles/run-tests.dir/emittertests.cpp.o.provides: test/CMakeFiles/run-t
 
 test/CMakeFiles/run-tests.dir/emittertests.cpp.o.provides.build: test/CMakeFiles/run-tests.dir/emittertests.cpp.o
 
+test/CMakeFiles/run-tests.dir/spectests.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
+test/CMakeFiles/run-tests.dir/spectests.cpp.o: ../test/spectests.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object test/CMakeFiles/run-tests.dir/spectests.cpp.o"
+	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/run-tests.dir/spectests.cpp.o -c /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/spectests.cpp
+
+test/CMakeFiles/run-tests.dir/spectests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run-tests.dir/spectests.cpp.i"
+	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/spectests.cpp > CMakeFiles/run-tests.dir/spectests.cpp.i
+
+test/CMakeFiles/run-tests.dir/spectests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run-tests.dir/spectests.cpp.s"
+	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/spectests.cpp -o CMakeFiles/run-tests.dir/spectests.cpp.s
+
+test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires:
+.PHONY : test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires
+
+test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides: test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires
+	$(MAKE) -f test/CMakeFiles/run-tests.dir/build.make test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides.build
+.PHONY : test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides
+
+test/CMakeFiles/run-tests.dir/spectests.cpp.o.provides.build: test/CMakeFiles/run-tests.dir/spectests.cpp.o
+
 test/CMakeFiles/run-tests.dir/main.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
 test/CMakeFiles/run-tests.dir/main.cpp.o: ../test/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object test/CMakeFiles/run-tests.dir/main.cpp.o"
 	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/run-tests.dir/main.cpp.o -c /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/main.cpp
 
@@ -140,6 +117,29 @@ test/CMakeFiles/run-tests.dir/main.cpp.o.provides: test/CMakeFiles/run-tests.dir
 .PHONY : test/CMakeFiles/run-tests.dir/main.cpp.o.provides
 
 test/CMakeFiles/run-tests.dir/main.cpp.o.provides.build: test/CMakeFiles/run-tests.dir/main.cpp.o
+
+test/CMakeFiles/run-tests.dir/tests.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
+test/CMakeFiles/run-tests.dir/tests.cpp.o: ../test/tests.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object test/CMakeFiles/run-tests.dir/tests.cpp.o"
+	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/run-tests.dir/tests.cpp.o -c /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/tests.cpp
+
+test/CMakeFiles/run-tests.dir/tests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run-tests.dir/tests.cpp.i"
+	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/tests.cpp > CMakeFiles/run-tests.dir/tests.cpp.i
+
+test/CMakeFiles/run-tests.dir/tests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run-tests.dir/tests.cpp.s"
+	cd /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/build/test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/mmh/src/quantum/qsyn/yaml-cpp-0.5.0/test/tests.cpp -o CMakeFiles/run-tests.dir/tests.cpp.s
+
+test/CMakeFiles/run-tests.dir/tests.cpp.o.requires:
+.PHONY : test/CMakeFiles/run-tests.dir/tests.cpp.o.requires
+
+test/CMakeFiles/run-tests.dir/tests.cpp.o.provides: test/CMakeFiles/run-tests.dir/tests.cpp.o.requires
+	$(MAKE) -f test/CMakeFiles/run-tests.dir/build.make test/CMakeFiles/run-tests.dir/tests.cpp.o.provides.build
+.PHONY : test/CMakeFiles/run-tests.dir/tests.cpp.o.provides
+
+test/CMakeFiles/run-tests.dir/tests.cpp.o.provides.build: test/CMakeFiles/run-tests.dir/tests.cpp.o
 
 test/CMakeFiles/run-tests.dir/new-api/nodetests.cpp.o: test/CMakeFiles/run-tests.dir/flags.make
 test/CMakeFiles/run-tests.dir/new-api/nodetests.cpp.o: ../test/new-api/nodetests.cpp
@@ -212,10 +212,10 @@ test/CMakeFiles/run-tests.dir/new-api/parsertests.cpp.o.provides.build: test/CMa
 
 # Object files for target run-tests
 run__tests_OBJECTS = \
-"CMakeFiles/run-tests.dir/spectests.cpp.o" \
-"CMakeFiles/run-tests.dir/tests.cpp.o" \
 "CMakeFiles/run-tests.dir/emittertests.cpp.o" \
+"CMakeFiles/run-tests.dir/spectests.cpp.o" \
 "CMakeFiles/run-tests.dir/main.cpp.o" \
+"CMakeFiles/run-tests.dir/tests.cpp.o" \
 "CMakeFiles/run-tests.dir/new-api/nodetests.cpp.o" \
 "CMakeFiles/run-tests.dir/new-api/spectests.cpp.o" \
 "CMakeFiles/run-tests.dir/new-api/parsertests.cpp.o"
@@ -223,10 +223,10 @@ run__tests_OBJECTS = \
 # External object files for target run-tests
 run__tests_EXTERNAL_OBJECTS =
 
-test/run-tests: test/CMakeFiles/run-tests.dir/spectests.cpp.o
-test/run-tests: test/CMakeFiles/run-tests.dir/tests.cpp.o
 test/run-tests: test/CMakeFiles/run-tests.dir/emittertests.cpp.o
+test/run-tests: test/CMakeFiles/run-tests.dir/spectests.cpp.o
 test/run-tests: test/CMakeFiles/run-tests.dir/main.cpp.o
+test/run-tests: test/CMakeFiles/run-tests.dir/tests.cpp.o
 test/run-tests: test/CMakeFiles/run-tests.dir/new-api/nodetests.cpp.o
 test/run-tests: test/CMakeFiles/run-tests.dir/new-api/spectests.cpp.o
 test/run-tests: test/CMakeFiles/run-tests.dir/new-api/parsertests.cpp.o
@@ -240,10 +240,10 @@ test/run-tests: test/CMakeFiles/run-tests.dir/link.txt
 test/CMakeFiles/run-tests.dir/build: test/run-tests
 .PHONY : test/CMakeFiles/run-tests.dir/build
 
-test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires
-test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/tests.cpp.o.requires
 test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/emittertests.cpp.o.requires
+test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/spectests.cpp.o.requires
 test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/main.cpp.o.requires
+test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/tests.cpp.o.requires
 test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/new-api/nodetests.cpp.o.requires
 test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/new-api/spectests.cpp.o.requires
 test/CMakeFiles/run-tests.dir/requires: test/CMakeFiles/run-tests.dir/new-api/parsertests.cpp.o.requires

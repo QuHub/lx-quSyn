@@ -15,8 +15,8 @@ NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
 CC=gcc
-CCC=g++
-CXX=g++
+CCC=c++
+CXX=c++
 FC=gfortran
 AS=as
 
@@ -82,7 +82,7 @@ LDLIBSOPTIONS=`pkg-config --libs yaml-cpp` -lboost_filesystem -lboost_program_op
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	c++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/qsyn ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/synthesizers/Synthesizer.o: synthesizers/Synthesizer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/synthesizers

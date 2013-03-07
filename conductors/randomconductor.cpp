@@ -20,7 +20,7 @@
 #include "randomconductor.h"
 
 #define N_BATCH 64
-#define N_RUNS  5000
+#define N_RUNS  16000
 
 #include <iostream>
 #include <fstream>
@@ -92,8 +92,14 @@ void RandomConductor::save_best_cost(Algorithm *algo)
   if (m_best_lnnqc > algo->lnnqc()) 
     m_best_lnnqc = algo->lnnqc(), changed = true;
 
-  if (changed)
+  if (changed) {
     cout << "QCost: " << m_best_cost << " LNNQC: " << m_best_lnnqc << std::endl;
+    ofstream circuit(m_function->m_functionName + ".circuit", ios_base::out);
+    for(int i=0; i < algo->num_gates(); i++) {
+      circuit << algo->control()[i] << "," << algo->target()[i] << endl;
+    }
+  }
+  
 }
 RandomConductor::~RandomConductor()
 {

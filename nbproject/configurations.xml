@@ -121,7 +121,7 @@
         </cTool>
         <ccTool>
           <standard>8</standard>
-          <commandlineTool>g++</commandlineTool>
+          <commandlineTool>c++</commandlineTool>
           <incDir>
             <pElem>conductors</pElem>
             <pElem>algorithms</pElem>
@@ -132,12 +132,14 @@
           </incDir>
         </ccTool>
         <linkerTool>
+          <commandlineTool>c++</commandlineTool>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs yaml-cpp`</linkerOptionItem>
             <linkerLibLibItem>boost_filesystem</linkerLibLibItem>
             <linkerLibLibItem>boost_program_options</linkerLibLibItem>
             <linkerLibStdlibItem>CppUnit</linkerLibStdlibItem>
-            <linkerLibLibItem>rt</linkerLibLibItem>
+            <linkerLibLibItem>boost_timer</linkerLibLibItem>
+            <linkerLibLibItem>boost_system</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -282,7 +284,7 @@
         <ccTool>
           <developmentMode>6</developmentMode>
           <standard>8</standard>
-          <commandlineTool>g++</commandlineTool>
+          <commandlineTool>c++</commandlineTool>
           <incDir>
             <pElem>conductors</pElem>
             <pElem>algorithms</pElem>
@@ -293,6 +295,7 @@
           </incDir>
         </ccTool>
         <linkerTool>
+          <commandlineTool>c++</commandlineTool>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs yaml-cpp`</linkerOptionItem>
             <linkerLibLibItem>boost_filesystem</linkerLibLibItem>

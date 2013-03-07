@@ -63,10 +63,12 @@ public:
   }
 
   ulong* target() {
+    if(m_ptarget != NULL) return m_ptarget;
     return (m_ptarget = ALLOC(MAX_NUM_GATES));
   }
 
   ulong* control() {
+    if(m_pcontrol != NULL) return m_pcontrol;
     return (m_pcontrol = ALLOC(MAX_NUM_GATES));
   }
 

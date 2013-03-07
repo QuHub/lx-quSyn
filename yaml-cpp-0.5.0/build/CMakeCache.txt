@@ -202,9 +202,9 @@ Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_LIBRARY_DIRS
 Boost_LIBRARY_DIRS-ADVANCED:INTERNAL=1
 //The library version string for boost libraries
-Boost_LIB_VERSION:INTERNAL=1_50
+Boost_LIB_VERSION:INTERNAL=1_49
 //The version number for boost libraries
-Boost_VERSION:INTERNAL=105000
+Boost_VERSION:INTERNAL=104900
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_BUILD_TOOL
